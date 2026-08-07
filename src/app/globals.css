@@ -1,0 +1,133 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #0a0e27;
+  --color-ink-raised: #121838;
+  --color-paper: #f0ede6;
+  --color-slate: #7c85ab;
+  --color-cobalt: #2b4bff;
+  --color-amber: #ffb627;
+}
+
+/* `inline` so the utilities emit the next/font variables directly — those are
+   set on <html> by layout.tsx. */
+@theme inline {
+  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* The mobile bar is sticky; offset anchor targets so headings clear it. */
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background-color: var(--color-ink);
+  color: var(--color-paper);
+  /* Selection is one of the few places the whole palette meets. */
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: var(--color-amber);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-amber);
+  outline-offset: 3px;
+}
+
+/* --- Load sequence ------------------------------------------------------ */
+/* Every animated element renders in its final state by default and is only
+   moved *out* of it by the animation's own from-keyframe, so the
+   reduced-motion override below leaves everything visible and in place. */
+
+@keyframes slab-wipe {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.4em);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes ticker {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes blink {
+  0%,
+  45% {
+    opacity: 1;
+  }
+  50%,
+  95% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.anim-slab {
+  transform-origin: left;
+  animation: slab-wipe 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.anim-rise {
+  animation: rise 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.anim-ticker {
+  animation: ticker 42s linear infinite;
+}
+
+.anim-blink {
+  animation: blink 1.2s steps(1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  /* No scrolling means the off-screen half would be unreadable, so drop the
+     duplicate copy and let the real one wrap. */
+  .anim-ticker {
+    animation: none !important;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .anim-ticker > [aria-hidden="true"] {
+    display: none;
+  }
+}
