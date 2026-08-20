@@ -2,11 +2,8 @@ import { HeroVisual } from "@/components/HeroVisual";
 import { SCROLL_OFFSET } from "@/lib/scroll";
 import { Reveal } from "@/components/Reveal";
 import { CopyEmail } from "@/components/CopyEmail";
-import { ArrowUpRight } from "@/components/Icons";
-import { glyphMap } from "@/components/Icons";
-import {
-  CtaBand, DisciplineCard, ProjectCard, SectionHeading, Tag,
-} from "@/components/UI";
+import { ArrowUpRight, glyphMap } from "@/components/Icons";
+import { DisciplineCard, ProjectCard, Section, SectionHeading, Tag } from "@/components/UI";
 import {
   disciplines, education, experience, otherExperience, profile,
   projects, socials, stats, toolbelt,
@@ -27,6 +24,15 @@ const values = [
   },
 ];
 
+const heroActions = [
+  { href: "#projects", glyph: "grid", label: "See my work" },
+  { href: "#about", glyph: "doc", label: "About me" },
+  { href: "#contact", glyph: "chat", label: "Get in touch" },
+] as const;
+
+/** Shared grid rhythm, so every card grid on the page breathes identically. */
+const GRID = "grid gap-6 md:gap-8";
+
 export default function Home() {
   const featured = projects.filter((p) => p.featured);
   const others = projects.filter((p) => !p.featured);
@@ -34,42 +40,36 @@ export default function Home() {
   return (
     <>
       {/* ================= Hero ================= */}
-      <section id="home" className="relative overflow-hidden" style={{ scrollMarginTop: SCROLL_OFFSET }}>
+      {/* Not wrapped in <Section>: the marquee below runs full-bleed, which a
+          width-clamped container would cut off. */}
+      <section
+        id="home"
+        className="relative overflow-hidden"
+        style={{ scrollMarginTop: SCROLL_OFFSET }}
+      >
         <div
           className="pointer-events-none absolute inset-0"
           style={{ background: "radial-gradient(70% 90% at 50% 0%, rgba(34,197,94,0.13), transparent 68%)" }}
           aria-hidden="true"
         />
 
-        <div className="relative mx-auto max-w-6xl px-5 pt-10 sm:px-8">
+        <div className="relative mx-auto w-full max-w-6xl px-4 pt-10 sm:px-6 lg:px-8">
           <Reveal className="flex flex-wrap justify-center gap-3">
-            <a
-              href="#projects"
-              className="group inline-flex min-h-11 cursor-pointer items-center gap-2.5 rounded-full border border-border bg-surface/80 py-1.5 pl-1.5 pr-5 text-sm font-medium text-fg backdrop-blur transition-all duration-200 hover:border-accent/50 hover:bg-surface-2"
-            >
-              <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-accent text-on-accent">
-                <glyphMap.grid className="h-4 w-4" aria-hidden="true" />
-              </span>
-              See my work
-            </a>
-            <a
-              href="#about"
-              className="group inline-flex min-h-11 cursor-pointer items-center gap-2.5 rounded-full border border-border bg-surface/80 py-1.5 pl-1.5 pr-5 text-sm font-medium text-fg backdrop-blur transition-all duration-200 hover:border-accent/50 hover:bg-surface-2"
-            >
-              <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-accent text-on-accent">
-                <glyphMap.doc className="h-4 w-4" aria-hidden="true" />
-              </span>
-              About me
-            </a>
-            <a
-              href="#contact"
-              className="group inline-flex min-h-11 cursor-pointer items-center gap-2.5 rounded-full border border-border bg-surface/80 py-1.5 pl-1.5 pr-5 text-sm font-medium text-fg backdrop-blur transition-all duration-200 hover:border-accent/50 hover:bg-surface-2"
-            >
-              <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-accent text-on-accent">
-                <glyphMap.chat className="h-4 w-4" aria-hidden="true" />
-              </span>
-              Get in touch
-            </a>
+            {heroActions.map((a) => {
+              const Glyph = glyphMap[a.glyph];
+              return (
+                <a
+                  key={a.href}
+                  href={a.href}
+                  className="group inline-flex min-h-11 cursor-pointer items-center gap-2.5 rounded-full border border-border bg-surface/80 py-1.5 pl-1.5 pr-5 text-sm font-medium text-fg backdrop-blur transition-all duration-200 hover:border-accent/50 hover:bg-surface-2 hover:-translate-y-0.5"
+                >
+                  <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-accent text-on-accent transition-transform duration-200 group-hover:scale-110">
+                    <Glyph className="h-4 w-4" aria-hidden="true" />
+                  </span>
+                  {a.label}
+                </a>
+              );
+            })}
           </Reveal>
 
           <div className="mt-14 grid items-center gap-10 lg:grid-cols-[1fr_auto_1fr]">
@@ -92,7 +92,7 @@ export default function Home() {
               )}
             </Reveal>
 
-            <Reveal delay={160} className="order-1 drift lg:order-2">
+            <Reveal delay={160} className="drift order-1 lg:order-2">
               <HeroVisual name={profile.name} wordmark={profile.wordmark} surname={profile.surname} />
             </Reveal>
 
@@ -125,26 +125,31 @@ export default function Home() {
       </section>
 
       {/* ================= What I do ================= */}
-      <section className="mx-auto max-w-6xl px-5 py-20 sm:px-8">
+      {/* Divider suppressed: the marquee's own border already closes the hero. */}
+      <Section divider={false}>
         <Reveal>
           <SectionHeading eyebrow="What I do" title="Areas I work in" />
         </Reveal>
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className={`mt-12 ${GRID} sm:grid-cols-2 lg:grid-cols-3`}>
           {disciplines.map((d, i) => (
             <Reveal key={d.title} delay={i * 60} className="h-full">
               <DisciplineCard {...d} />
             </Reveal>
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* ================= About ================= */}
-      <section id="about" className="mx-auto max-w-6xl px-5 py-20 sm:px-8" style={{ scrollMarginTop: SCROLL_OFFSET }}>
+      <Section id="about">
         <Reveal>
-          <SectionHeading eyebrow="About me" title="I build software that works for real people." lead={profile.intro} />
+          <SectionHeading
+            eyebrow="About me"
+            title="I build software that works for real people."
+            lead={profile.intro}
+          />
         </Reveal>
 
-        <div className="mt-14 grid gap-14 lg:grid-cols-[1.4fr_1fr]">
+        <div className="mt-14 grid gap-10 md:gap-14 lg:grid-cols-[1.4fr_1fr]">
           <Reveal>
             <h3 className="font-display text-xs uppercase tracking-[0.18em] text-muted">How I got here</h3>
             <div className="mt-6 space-y-5 text-[15px] leading-relaxed text-muted">
@@ -180,9 +185,9 @@ export default function Home() {
             </div>
           </Reveal>
 
-          <div className="space-y-5">
+          <div className="space-y-6">
             <Reveal delay={80}>
-              <div className="rounded-2xl border border-border bg-surface p-6">
+              <div className="rounded-2xl border border-border bg-surface p-6 transition-colors duration-300 hover:border-accent/40">
                 <h3 className="font-display text-xs uppercase tracking-[0.18em] text-muted">At a glance</h3>
                 <dl className="mt-5 space-y-4">
                   {stats.map((s) => (
@@ -196,7 +201,7 @@ export default function Home() {
             </Reveal>
 
             <Reveal delay={140}>
-              <div className="rounded-2xl border border-border bg-surface p-6">
+              <div className="rounded-2xl border border-border bg-surface p-6 transition-colors duration-300 hover:border-accent/40">
                 <h3 className="font-display text-xs uppercase tracking-[0.18em] text-muted">Education</h3>
                 {education.map((e) => (
                   <div key={e.degree} className="mt-5">
@@ -213,32 +218,24 @@ export default function Home() {
 
         <Reveal className="mt-16">
           <h3 className="font-display text-xs uppercase tracking-[0.18em] text-muted">How I work</h3>
-          <div className="mt-6 grid gap-5 md:grid-cols-3">
+          <div className={`mt-6 ${GRID} md:grid-cols-3`}>
             {values.map((v, i) => (
-              <Reveal key={v.title} delay={i * 80}>
-                <div className="h-full rounded-2xl border border-border bg-surface p-6">
-                  <span className="font-display text-sm text-accent">0{i + 1}</span>
-                  <h4 className="mt-3 font-display text-lg font-medium tracking-tight">{v.title}</h4>
+              <Reveal key={v.title} delay={i * 80} className="h-full">
+                <div className="flex h-full flex-col justify-between rounded-2xl border border-border bg-surface p-6 transition-colors duration-300 hover:border-accent/40">
+                  <div>
+                    <span className="font-display text-sm text-accent">0{i + 1}</span>
+                    <h4 className="mt-3 font-display text-lg font-medium tracking-tight">{v.title}</h4>
+                  </div>
                   <p className="mt-2.5 text-sm leading-relaxed text-muted">{v.body}</p>
                 </div>
               </Reveal>
             ))}
           </div>
         </Reveal>
-
-        <div className="mt-16">
-          <CtaBand
-            title="Want the full résumé?"
-            body="The PDF has the detailed coursework and references. Happy to talk through any of the projects too."
-            href={profile.resume}
-            label="Download résumé"
-            external
-          />
-        </div>
-      </section>
+      </Section>
 
       {/* ================= Experience ================= */}
-      <section id="experience" className="mx-auto max-w-4xl px-5 py-20 sm:px-8" style={{ scrollMarginTop: SCROLL_OFFSET }}>
+      <Section id="experience">
         <Reveal>
           <SectionHeading
             eyebrow="Experience"
@@ -247,48 +244,57 @@ export default function Home() {
           />
         </Reveal>
 
-        <h3 className="mb-10 mt-14 pl-9 font-display text-xs uppercase tracking-[0.18em] text-muted sm:pl-12">
-          Internship &amp; university roles
-        </h3>
-        <ol className="relative">
-          <span className="absolute left-[7px] top-2 bottom-2 w-px bg-border sm:left-[9px]" aria-hidden="true" />
-          {experience.map((job, i) => (
-            <Reveal as="li" key={`${job.org}-${job.role}`} delay={i * 90} className="relative pl-9 pb-12 last:pb-0 sm:pl-12">
-              <span className="absolute left-0 top-1.5 grid h-[15px] w-[15px] place-items-center rounded-full border-2 border-accent bg-bg sm:h-[19px] sm:w-[19px]" aria-hidden="true">
-                <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-              </span>
-              <div className="group rounded-2xl border border-border bg-surface p-6 transition-colors duration-300 hover:border-accent/40">
-                <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                  <h4 className="font-display text-xl font-medium tracking-tight">{job.role}</h4>
-                  <span className="font-display text-xs whitespace-nowrap text-muted">{job.period}</span>
+        {/* Clamped but left-aligned, so the timeline keeps a readable measure
+            without leaving the page's shared left baseline. */}
+        <div className="mt-14 max-w-4xl">
+          {/* Sits on the page's left baseline, like every other heading; the
+              rail below starts here too and the cards hang off it. */}
+          <h3 className="mb-8 font-display text-xs uppercase tracking-[0.18em] text-muted">
+            Internship &amp; university roles
+          </h3>
+          <ol className="relative">
+            <span className="absolute left-[7px] top-2 bottom-2 w-px bg-border sm:left-[9px]" aria-hidden="true" />
+            {experience.map((job, i) => (
+              <Reveal as="li" key={`${job.org}-${job.role}`} delay={i * 90} className="relative pl-9 pb-8 last:pb-0 sm:pl-12">
+                <span className="absolute left-0 top-1.5 grid h-[15px] w-[15px] place-items-center rounded-full border-2 border-accent bg-bg sm:h-[19px] sm:w-[19px]" aria-hidden="true">
+                  <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+                </span>
+                <div className="rounded-2xl border border-border bg-surface p-6 transition-colors duration-300 hover:border-accent/40">
+                  <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                    <h4 className="font-display text-xl font-medium tracking-tight">{job.role}</h4>
+                    <span className="font-display text-xs whitespace-nowrap text-muted">{job.period}</span>
+                  </div>
+                  <p className="mt-1 text-sm text-accent">{job.org}</p>
+                  <p className="mt-4 text-sm leading-relaxed text-muted">{job.summary}</p>
+                  <ul className="mt-4 space-y-2">
+                    {job.points.map((pt) => (
+                      <li key={pt} className="flex gap-2.5 text-sm leading-relaxed text-fg/85">
+                        <span className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-accent" aria-hidden="true" />
+                        {pt}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-5 flex flex-wrap gap-1.5 border-t border-border pt-4">
+                    {job.stack.map((s) => <Tag key={s}>{s}</Tag>)}
+                  </div>
                 </div>
-                <p className="mt-1 text-sm text-accent">{job.org}</p>
-                <p className="mt-4 text-sm leading-relaxed text-muted">{job.summary}</p>
-                <ul className="mt-4 space-y-2">
-                  {job.points.map((pt) => (
-                    <li key={pt} className="flex gap-2.5 text-sm leading-relaxed text-fg/85">
-                      <span className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-accent" aria-hidden="true" />
-                      {pt}
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-5 flex flex-wrap gap-1.5 border-t border-border pt-4">
-                  {job.stack.map((s) => <Tag key={s}>{s}</Tag>)}
-                </div>
-              </div>
-            </Reveal>
-          ))}
-        </ol>
+              </Reveal>
+            ))}
+          </ol>
+        </div>
 
-        <Reveal className="mt-12 pl-9 sm:pl-12">
+        <Reveal className="mt-16">
           <h3 className="font-display text-xs uppercase tracking-[0.18em] text-muted">Side hustles</h3>
-          <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted">
+          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted">
             Part-time and on-call work carried alongside full-time study. Unrelated to
             software, but where the customer-facing habits came from.
           </p>
-          <ul className="mt-5 grid gap-4 sm:grid-cols-2">
+          <ul className={`mt-6 ${GRID} sm:grid-cols-2`}>
             {otherExperience.map((job) => (
-              <li key={`${job.org}-${job.role}`} className="flex flex-col rounded-2xl border border-border bg-surface p-5">
+              <li
+                key={`${job.org}-${job.role}`}
+                className="flex h-full flex-col rounded-2xl border border-border bg-surface p-5 transition-colors duration-300 hover:border-accent/40"
+              >
                 <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
                   <h4 className="font-display text-base font-medium tracking-tight">{job.role}</h4>
                   <span className="font-display text-xs whitespace-nowrap text-muted">{job.period}</span>
@@ -307,10 +313,10 @@ export default function Home() {
             ))}
           </ul>
         </Reveal>
-      </section>
+      </Section>
 
       {/* ================= Projects ================= */}
-      <section id="projects" className="mx-auto max-w-6xl px-5 py-20 sm:px-8" style={{ scrollMarginTop: SCROLL_OFFSET }}>
+      <Section id="projects">
         <Reveal>
           <SectionHeading
             eyebrow="Selected work"
@@ -318,7 +324,7 @@ export default function Home() {
             lead="Three projects: one solo, two on Agile teams. Each description says what the system does and which parts I was responsible for."
           />
         </Reveal>
-        <div className="mt-12 grid gap-5 lg:grid-cols-3">
+        <div className={`mt-12 ${GRID} md:grid-cols-2 lg:grid-cols-3`}>
           {featured.map((p, i) => (
             <Reveal key={p.name} delay={i * 80} className="h-full">
               <ProjectCard {...p} />
@@ -331,7 +337,7 @@ export default function Home() {
             <Reveal className="mt-16">
               <SectionHeading eyebrow="Also built" title="Other projects" />
             </Reveal>
-            <div className="mt-12 grid gap-5 md:grid-cols-3">
+            <div className={`mt-12 ${GRID} md:grid-cols-2 lg:grid-cols-3`}>
               {others.map((p, i) => (
                 <Reveal key={p.name} delay={i * 80} className="h-full">
                   <ProjectCard {...p} />
@@ -340,10 +346,10 @@ export default function Home() {
             </div>
           </>
         )}
-      </section>
+      </Section>
 
       {/* ================= Contact ================= */}
-      <section id="contact" className="mx-auto max-w-4xl px-5 py-20 sm:px-8" style={{ scrollMarginTop: SCROLL_OFFSET }}>
+      <Section id="contact">
         <Reveal>
           <SectionHeading
             eyebrow="Contact"
@@ -404,15 +410,15 @@ export default function Home() {
         </Reveal>
 
         <Reveal delay={240} className="mt-16">
-          <div className="grid gap-5 sm:grid-cols-2">
-            <div className="rounded-2xl border border-border bg-surface p-6">
+          <div className={`${GRID} sm:grid-cols-2`}>
+            <div className="flex h-full flex-col rounded-2xl border border-border bg-surface p-6 transition-colors duration-300 hover:border-accent/40">
               <h3 className="font-display text-sm font-medium">What I am looking for</h3>
               <p className="mt-2.5 text-sm leading-relaxed text-muted">
                 New-grad and internship roles in full-stack or backend development, in Saskatchewan
                 or remote. I am equally happy writing the API or the tests around it.
               </p>
             </div>
-            <div className="rounded-2xl border border-border bg-surface p-6">
+            <div className="flex h-full flex-col rounded-2xl border border-border bg-surface p-6 transition-colors duration-300 hover:border-accent/40">
               <h3 className="font-display text-sm font-medium">Based in</h3>
               <p className="mt-2.5 text-sm leading-relaxed text-muted">
                 {profile.location}, Canada. Comfortable working remotely across time zones.
@@ -420,7 +426,7 @@ export default function Home() {
             </div>
           </div>
         </Reveal>
-      </section>
+      </Section>
     </>
   );
 }
