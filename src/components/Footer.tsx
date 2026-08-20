@@ -1,6 +1,13 @@
-import Link from "next/link";
-import { navItems, profile, socials } from "@/lib/content";
+import { profile, socials } from "@/lib/content";
 import { glyphMap } from "./Icons";
+
+const sections = [
+  { id: "home", label: "Home" },
+  { id: "about", label: "About" },
+  { id: "experience", label: "Experience" },
+  { id: "projects", label: "Projects" },
+  { id: "contact", label: "Contact" },
+];
 
 export function Footer() {
   return (
@@ -8,12 +15,12 @@ export function Footer() {
       <div className="mx-auto max-w-6xl px-5 py-12 sm:px-8">
         <div className="flex flex-col gap-10 sm:flex-row sm:items-start sm:justify-between">
           <div className="max-w-sm">
-            <Link href="/" className="flex items-center gap-2.5">
+            <a href="#home" className="flex items-center gap-2.5">
               <span className="grid h-8 w-8 place-items-center rounded-full bg-accent font-display text-[13px] font-bold text-on-accent">
                 {profile.name.split(" ").map((w) => w[0]).join("").slice(0, 2)}
               </span>
               <span className="text-sm font-semibold tracking-tight">{profile.name}</span>
-            </Link>
+            </a>
             <p className="mt-4 text-sm leading-relaxed text-muted">
               {profile.role} at the University of Saskatchewan, building full-stack web applications.
             </p>
@@ -22,14 +29,14 @@ export function Footer() {
           <nav aria-label="Footer">
             <h2 className="font-display text-xs uppercase tracking-[0.18em] text-muted">Pages</h2>
             <ul className="mt-2">
-              {navItems.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
+              {sections.map((s) => (
+                <li key={s.id}>
+                  <a
+                    href={`#${s.id}`}
                     className="inline-flex min-h-11 items-center py-1 text-sm text-fg/80 transition-colors duration-200 hover:text-accent"
                   >
-                    {item.label}
-                  </Link>
+                    {s.label}
+                  </a>
                 </li>
               ))}
             </ul>
