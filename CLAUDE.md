@@ -8,10 +8,17 @@ Behavioral guidelines to reduce common LLM coding mistakes. Merge with project-s
 
 <!-- Fill this in as the project takes shape. A few sentences here saves Claude from
      re-guessing your stack and conventions every session. -->
-- **What this is:** (e.g. personal portfolio site / learning sandbox)
-- **Stack:** (e.g. Python, or React + Vite, etc.)
-- **Run locally:** (the command to start/run the project)
-- **Tests:** (the command to run tests, if any exist yet)
+- **What this is:** Personal portfolio site — a multi-page computer science student portfolio.
+- **Stack:** Next.js 16 (App Router) + React 19 + TypeScript + Tailwind CSS v4.
+- **Run locally:** `npm run dev` (dev server) or `npm run build && npm run start` (production).
+- **Tests:** No test suite yet. Verify with `npm run build`, `npx tsc --noEmit`, and `npx eslint .`.
+- **Content:** All editable copy lives in `src/lib/content.ts` — change it there, not in the pages.
+- **Design:** Colors follow the 60-30-10 rule (60% ground, 30% content/surfaces,
+  10% accent) as tokens in `src/app/globals.css`. Reference the tokens
+  (`bg-surface`, `text-accent`, ...) — do not hardcode hex in components.
+
+> Note: `create-next-app` overwrites this file with a bare `@AGENTS.md` reference.
+> If that happens again, restore it with `git checkout -- CLAUDE.md`.
 
 ## 1. Think Before Coding
 
