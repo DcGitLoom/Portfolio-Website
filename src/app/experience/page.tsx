@@ -69,7 +69,7 @@ export default function ExperiencePage() {
             Side hustles
           </h2>
           <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted">
-            Part-time and on-call work carried alongside full-time study — unrelated to
+            Part-time and on-call work carried alongside full-time study. Unrelated to
             software, but where the customer-facing habits came from.
           </p>
           <ul className="mt-5 grid gap-4 sm:grid-cols-2">
@@ -117,7 +117,7 @@ export default function ExperiencePage() {
 
       <CtaBand
         title="Hiring a new grad or intern?"
-        body="I am looking for full-stack or backend work where I can own a feature end to end — from the schema through to the tests that keep it honest."
+        body="I am looking for full-stack or backend work where I can own a feature end to end, from the schema through to the tests that keep it honest."
         href="/contact"
         label="Start a conversation"
       />

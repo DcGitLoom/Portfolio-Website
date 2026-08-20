@@ -5,7 +5,7 @@ import { education, profile, stats, toolbelt } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "About",
-  description: `About ${profile.name} — Computer Science student at the University of Saskatchewan building full-stack web applications.`,
+  description: `About ${profile.name}, a Computer Science student at the University of Saskatchewan building full-stack web applications.`,
 };
 
 const values = [
@@ -47,7 +47,7 @@ export default function AboutPage() {
                 That work has ranged from independently architecting a Dockerised Q&amp;A platform
                 to collaborating on a thirteen-person Agile team replacing a legacy archaeological
                 database across five milestones. On that project I owned the RESTful CRUD endpoints,
-                the container setup, the CI/CD pipeline, and the test suite — unit through
+                the container setup, the CI/CD pipeline, and the test suite, from unit through
                 end-to-end, plus load and stress runs to confirm the system held under real
                 conditions.
               </p>
@@ -124,9 +124,10 @@ export default function AboutPage() {
 
       <CtaBand
         title="Want the full résumé?"
-        body="Happy to send a PDF with detailed coursework and references, or to talk through any of the projects."
-        href="/contact"
-        label="Get in touch"
+        body="The PDF has the detailed coursework and references. Happy to talk through any of the projects too."
+        href={profile.resume}
+        label="Download résumé"
+        external
       />
     </>
   );

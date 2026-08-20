@@ -30,12 +30,12 @@ const syne = Syne({
 
 export const metadata: Metadata = {
   title: {
-    default: `${profile.name} — ${profile.role}`,
-    template: `%s — ${profile.name}`,
+    default: `${profile.name} | ${profile.role}`,
+    template: `%s | ${profile.name}`,
   },
   description: profile.intro,
   openGraph: {
-    title: `${profile.name} — ${profile.role}`,
+    title: `${profile.name} | ${profile.role}`,
     description: profile.intro,
     type: "website",
   },

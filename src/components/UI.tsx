@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { ArrowRight, ArrowUpRight, glyphMap, type GlyphName } from "./Icons";
 
-/** Pill action with a filled accent disc — the hero's primary affordance. */
+/** Pill action with a filled accent disc, the hero's primary affordance. */
 export function PillLink({
   href, icon, children, external = false,
 }: {
@@ -79,7 +79,7 @@ export function DisciplineCard({
   return (
     <Link
       href={href}
-      aria-label={`${title} — see related projects`}
+      aria-label={`${title}: see related projects`}
       className="group relative flex h-full cursor-pointer flex-col overflow-hidden rounded-2xl border border-border bg-surface p-5 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40"
     >
       {/* Accent wash appears only on hover, keeping the accent share small at rest. */}
@@ -158,12 +158,14 @@ export function ProjectCard({
 
 /** Full-width CTA band closing every page. */
 export function CtaBand({
-  title, body, href, label,
+  title, body, href, label, external = false,
 }: {
   title: string;
   body: string;
   href: string;
   label: string;
+  /** Renders a plain anchor so the target can be a file rather than a route. */
+  external?: boolean;
 }) {
   return (
     <section className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-8">
@@ -177,13 +179,25 @@ export function CtaBand({
           {title}
         </h2>
         <p className="relative mx-auto mt-4 max-w-xl text-sm leading-relaxed text-muted">{body}</p>
-        <Link
-          href={href}
-          className="group relative mt-8 inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-medium text-on-accent transition-transform duration-200 hover:scale-[1.03]"
-        >
-          {label}
-          <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
-        </Link>
+        {external ? (
+          <a
+            href={href}
+            target="_blank"
+            rel="noreferrer noopener"
+            className="group relative mt-8 inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-medium text-on-accent transition-transform duration-200 hover:scale-[1.03]"
+          >
+            {label}
+            <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
+          </a>
+        ) : (
+          <Link
+            href={href}
+            className="group relative mt-8 inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-medium text-on-accent transition-transform duration-200 hover:scale-[1.03]"
+          >
+            {label}
+            <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
+          </Link>
+        )}
       </div>
     </section>
   );

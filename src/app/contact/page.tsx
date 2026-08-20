@@ -87,7 +87,7 @@ export default function ContactPage() {
             <div className="rounded-2xl border border-border bg-surface p-6">
               <h3 className="font-display text-sm font-medium">Based in</h3>
               <p className="mt-2.5 text-sm leading-relaxed text-muted">
-{profile.location}, Canada — and comfortable working remotely across time zones.
+{profile.location}, Canada. Comfortable working remotely across time zones.
               </p>
             </div>
           </div>

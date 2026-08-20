@@ -34,7 +34,7 @@ export default function Home() {
                 {profile.kicker}
               </p>
               <h1 className="mt-3 font-display text-xl leading-snug font-light whitespace-pre-line sm:text-2xl">
-                <span className="sr-only">{profile.name} — </span>
+                <span className="sr-only">{profile.name}, </span>
                 {profile.discipline}
               </h1>
               {profile.available && (
@@ -90,7 +90,7 @@ export default function Home() {
           <SectionHeading
             eyebrow="What drives me"
             title="Building software that is correct, fast, and still readable a year later."
-            lead="I am a computer science student who likes the unglamorous parts — schema design, complexity budgets, and tests that fail for the right reason. Most of what I build starts as a question I could not answer by reading about it."
+            lead="I am a computer science student who likes the unglamorous parts: schema design, complexity budgets, and tests that fail for the right reason. Most of what I build starts as a question I could not answer by reading about it."
           />
         </Reveal>
 

@@ -11,11 +11,12 @@ export const profile = {
   role: "Computer Science Student",
   discipline: "Full-Stack Developer\n& Software Engineer",
   intro:
-    "Hi, I'm Dhruv — a Computer Science student at the University of Saskatchewan with a minor in Mathematics. I build software that works for real people, bridging complex backend logic and interfaces people can actually use. My focus is reliability and scale, whether that means RESTful APIs, CI/CD pipelines, or a test suite that catches things before users do.",
+    "Hi, I'm Dhruv. I'm a Computer Science student at the University of Saskatchewan with a minor in Mathematics. I build software that works for real people, bridging complex backend logic and interfaces people can actually use. My focus is reliability and scale, whether that means RESTful APIs, CI/CD pipelines, or a test suite that catches things before users do.",
   location: "Saskatoon, Saskatchewan",
   email: "dhruvchaudhari51659@gmail.com",
   github: "https://github.com/DcGitLoom",
   linkedin: "https://www.linkedin.com/in/dhruv-chaudhari-b999192a4",
+  resume: "/dhruv-chaudhari-resume.pdf",
   available: true,
   availableLabel: "Open to new-grad & internship roles",
 } as const;
@@ -46,7 +47,7 @@ export const toolbelt = [
 export const disciplines = [
   {
     title: "Full-Stack Web Development",
-    blurb: "End-to-end applications on the MERN and SERN stacks — React on the front, Node and Express behind it, SQL or Mongo underneath.",
+    blurb: "End-to-end applications on the MERN and SERN stacks: React on the front, Node and Express behind it, SQL or Mongo underneath.",
     tags: ["React", "Node.js", "Express"],
     glyph: "stack" as const,
   },
@@ -70,7 +71,7 @@ export const disciplines = [
   },
   {
     title: "Agile Delivery",
-    blurb: "Scrum on real teams — one of them thirteen people delivering across five incremental milestones.",
+    blurb: "Scrum on real teams, one of them thirteen people delivering across five incremental milestones.",
     tags: ["Scrum", "Agile"],
     glyph: "branch" as const,
   },
@@ -94,7 +95,7 @@ export const experience = [
   {
     role: "Service Desk Analyst",
     org: "eHealth Saskatchewan · Internship",
-    period: "May 2024 — Apr 2025",
+    period: "May 2024 – Apr 2025",
     summary:
       "A year-long professional internship providing frontline technical support across the provincial health IT system.",
     points: [
@@ -105,9 +106,9 @@ export const experience = [
     stack: ["Troubleshooting", "Ticketing", "Documentation"],
   },
   {
-    role: "Grader — Math 110",
+    role: "Grader, Math 110",
     org: "University of Saskatchewan · Contract",
-    period: "Jan 2024 — Apr 2024",
+    period: "Jan 2024 – Apr 2024",
     summary:
       "Marked assignments and exams for a first-year mathematics course.",
     points: [
@@ -123,7 +124,7 @@ export const otherExperience = [
   {
     role: "Server",
     org: "Olive Garden",
-    period: "Sep 2025 — Mar 2026",
+    period: "Sep 2025 – Mar 2026",
     summary: "Ran sections of a fast-paced dining room through peak service.",
     points: [
       "Listened to what guests wanted and made menu recommendations that fit their tastes.",
@@ -134,7 +135,7 @@ export const otherExperience = [
   {
     role: "Sales Associate",
     org: "Cabela's",
-    period: "Oct 2023 — Mar 2024",
+    period: "Oct 2023 – Mar 2024",
     summary: "Advised customers on merchandise on a busy retail floor.",
     points: [
       "Provided product information and helped customers choose between options.",
@@ -145,7 +146,7 @@ export const otherExperience = [
   {
     role: "Convocation Usher",
     org: "University of Saskatchewan · On-call",
-    period: "Jul 2023 — Apr 2024",
+    period: "Jul 2023 – Apr 2024",
     summary: "Managed seating logistics and guest flow at formal university ceremonies.",
     points: [
       "Guided guests, graduates, and faculty to their seating areas and ran a smooth check-in.",
@@ -156,7 +157,7 @@ export const otherExperience = [
   {
     role: "Sales Representative",
     org: "Petro-Canada Lubricants",
-    period: "Mar 2022 — Jul 2023",
+    period: "Mar 2022 – Jul 2023",
     summary: "Handled purchases, payments, and enquiries on a permanent part-time basis.",
     points: [
       "Gave customers accurate information on products, pricing, and services.",
@@ -170,7 +171,7 @@ export const education = [
   {
     degree: "B.Sc. Computer Science",
     org: "University of Saskatchewan",
-    period: "Jan 2022 — Dec 2026",
+    period: "Jan 2022 – Dec 2026",
     detail: "Minor in Mathematics. Graduating December 2026. Software engineering coursework (CMPT 371) produced the PCubed team project.",
   },
 ];
@@ -198,7 +199,7 @@ export const projects = [
       "Threaded replies, code screenshot uploads, and like/dislike voting",
       "Bookmarking so users can return to channels and questions",
       "Admin dashboard for managing users and channels",
-      "Whole stack comes up with a single docker compose up — no manual setup",
+      "Whole stack comes up with a single docker compose up, with no manual setup",
     ],
     href: "https://github.com/DcGitLoom/Discussion-Board",
     year: "2025",
@@ -221,4 +222,5 @@ export const socials = [
   { label: "Email", href: `mailto:${profile.email}`, icon: "mail" as const },
   { label: "GitHub", href: profile.github, icon: "github" as const },
   { label: "LinkedIn", href: profile.linkedin, icon: "linkedin" as const },
+  { label: "Résumé", href: profile.resume, icon: "doc" as const },
 ];

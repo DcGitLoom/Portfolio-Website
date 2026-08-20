@@ -5,7 +5,7 @@ import { profile, projects } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Projects",
-  description: `Full-stack web applications built by ${profile.name} — React, Node.js, Express, MySQL, and Docker.`,
+  description: `Full-stack web applications built by ${profile.name} using React, Node.js, Express, MySQL, and Docker.`,
 };
 
 export default function ProjectsPage() {
@@ -17,7 +17,7 @@ export default function ProjectsPage() {
       <PageHeader
         eyebrow="Projects"
         title="Full-stack applications I have built."
-        lead="Three projects — one solo, two on Agile teams. Each description says what the system does and which parts I was responsible for."
+        lead="Three projects: one solo, two on Agile teams. Each description says what the system does and which parts I was responsible for."
       />
 
       <section className="mx-auto max-w-6xl px-5 py-20 sm:px-8">
