@@ -5,7 +5,8 @@
 
 export const profile = {
   name: "Dhruv Chaudhari",
-  wordmark: "dhruv",
+  wordmark: "Dhruv",
+  surname: "Chaudhari",
   kicker: "Computer Science",
   role: "Computer Science Student",
   discipline: "Full-Stack Developer\n& Software Engineer",

@@ -6,7 +6,7 @@ import Image from "next/image";
  * asset is the portrait itself, and everything holds still under
  * prefers-reduced-motion (see globals.css).
  */
-export function HeroVisual({ name }: { name: string }) {
+export function HeroVisual({ name, wordmark, surname }: { name: string; wordmark: string; surname: string }) {
   const nodes = [
     { angle: 0, label: "TS" },
     { angle: 72, label: "React" },
@@ -21,7 +21,7 @@ export function HeroVisual({ name }: { name: string }) {
       the box has no in-flow content to size from, and a percentage width inside
       the hero's `auto` grid column collapses it to zero.
     */
-    <div className="relative mx-auto aspect-square w-[280px] sm:w-[360px] lg:w-[400px] xl:w-[420px]">
+    <div className="relative mx-auto aspect-square w-[280px] sm:w-[360px] lg:w-[400px] xl:w-[420px] [container-type:inline-size]">
       {/* Soft green glow behind the figure — the single largest accent moment. */}
       <div
         className="pulse-ring absolute inset-[16%] rounded-full blur-3xl"
@@ -88,6 +88,25 @@ export function HeroVisual({ name }: { name: string }) {
           WebkitMaskImage: "linear-gradient(to bottom, #000 86%, transparent 100%)",
         }}
       />
+
+      {/*
+        Name lockup sitting across the chest, as in the reference. The h1
+        already announces the name, so this repetition is decorative.
+      */}
+      <div
+        className="absolute bottom-[17%] left-1/2 w-full -translate-x-1/2 text-center"
+        aria-hidden="true"
+      >
+        <p className="font-display text-[0.7rem] font-semibold uppercase tracking-[0.42em] text-accent sm:text-[0.8rem]">
+          {surname}
+        </p>
+        <p
+          className="mt-1 font-display font-bold leading-[0.88] tracking-tight text-white"
+          style={{ fontSize: "clamp(2.8rem, 22cqw, 5.2rem)", textShadow: "0 6px 28px rgba(0,0,0,0.55)" }}
+        >
+          {wordmark}
+        </p>
+      </div>
     </div>
   );
 }

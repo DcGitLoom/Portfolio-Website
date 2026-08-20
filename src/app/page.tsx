@@ -49,7 +49,7 @@ export default function Home() {
             </Reveal>
 
             <Reveal delay={160} className="order-1 drift lg:order-2">
-              <HeroVisual name={profile.name} />
+              <HeroVisual name={profile.name} wordmark={profile.wordmark} surname={profile.surname} />
             </Reveal>
 
             <Reveal delay={240} className="order-3">
@@ -67,21 +67,10 @@ export default function Home() {
               </div>
             </Reveal>
           </div>
-
-          {/* Oversized wordmark, as in the reference */}
-          <Reveal delay={300} className="mt-12">
-            <p
-              className="select-none text-center font-display font-bold tracking-tight text-fg/[0.06]"
-              style={{ fontSize: "clamp(3.5rem, 17vw, 13rem)", lineHeight: 0.85 }}
-              aria-hidden="true"
-            >
-              {profile.wordmark}
-            </p>
-          </Reveal>
         </div>
 
         {/* Toolbelt marquee */}
-        <div className="relative mt-4 overflow-hidden border-y border-border py-5">
+        <div className="relative mt-14 overflow-hidden border-y border-border py-5">
           <div className="marquee-track flex w-max gap-10 pr-10">
             {[...toolbelt, ...toolbelt].map((t, i) => (
               <span
