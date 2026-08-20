@@ -143,8 +143,8 @@ export const education = [
   {
     degree: "B.Sc. Computer Science",
     org: "University of Saskatchewan",
-    period: "2022 — 2026",
-    detail: "Minor in Mathematics. Software engineering coursework (CMPT 371) produced the PCubed team project below.",
+    period: "Jan 2022 — Dec 2026",
+    detail: "Minor in Mathematics. Graduating December 2026. Software engineering coursework (CMPT 371) produced the PCubed team project.",
   },
 ];
 
