@@ -14,12 +14,12 @@ export default function ExperiencePage() {
       <PageHeader
         eyebrow="Experience"
         title="Where I have worked, and what I actually did."
-        lead="A year-long IT internship at eHealth Saskatchewan, university contract work, and the customer-facing roles I held alongside full-time study."
+        lead="A year-long IT internship at eHealth Saskatchewan and university contract work, plus the side hustles that paid for the degree."
       />
 
       <section className="mx-auto max-w-4xl px-5 pt-20 pb-12 sm:px-8">
         <h2 className="mb-10 pl-9 font-display text-xs uppercase tracking-[0.18em] text-muted sm:pl-12">
-          Technical &amp; university roles
+          Internship &amp; university roles
         </h2>
         <ol className="relative">
           {/* Timeline spine */}
@@ -66,8 +66,12 @@ export default function ExperiencePage() {
       <section className="mx-auto max-w-4xl px-5 pb-12 sm:px-8">
         <Reveal className="pl-9 sm:pl-12">
           <h2 className="font-display text-xs uppercase tracking-[0.18em] text-muted">
-            Alongside full-time study
+            Side hustles
           </h2>
+          <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted">
+            Part-time and on-call work carried alongside full-time study — unrelated to
+            software, but where the customer-facing habits came from.
+          </p>
           <ul className="mt-5 grid gap-4 sm:grid-cols-2">
             {otherExperience.map((job) => (
               <li

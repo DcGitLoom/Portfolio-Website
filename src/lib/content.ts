@@ -88,7 +88,7 @@ export const stats = [
   { value: "5", label: "Incremental milestones delivered" },
 ];
 
-/** Software and university roles — the work most relevant to engineering. */
+/** Internship and university roles — the work most relevant to engineering. */
 export const experience = [
   {
     role: "Service Desk Analyst",
@@ -117,7 +117,7 @@ export const experience = [
   },
 ];
 
-/** Customer-facing roles held alongside full-time study. */
+/** Side hustles: part-time work held alongside full-time study. */
 export const otherExperience = [
   {
     role: "Server",
