@@ -70,13 +70,24 @@ export default function ExperiencePage() {
           </h2>
           <ul className="mt-5 grid gap-4 sm:grid-cols-2">
             {otherExperience.map((job) => (
-              <li key={`${job.org}-${job.role}`} className="rounded-2xl border border-border bg-surface p-5">
+              <li
+                key={`${job.org}-${job.role}`}
+                className="flex flex-col rounded-2xl border border-border bg-surface p-5"
+              >
                 <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
                   <h3 className="font-display text-base font-medium tracking-tight">{job.role}</h3>
                   <span className="font-display text-xs whitespace-nowrap text-muted">{job.period}</span>
                 </div>
                 <p className="mt-1 text-sm text-accent">{job.org}</p>
                 <p className="mt-3 text-sm leading-relaxed text-muted">{job.summary}</p>
+                <ul className="mt-3 space-y-1.5">
+                  {job.points.map((pt) => (
+                    <li key={pt} className="flex gap-2.5 text-sm leading-relaxed text-fg/85">
+                      <span className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-accent" aria-hidden="true" />
+                      {pt}
+                    </li>
+                  ))}
+                </ul>
               </li>
             ))}
           </ul>

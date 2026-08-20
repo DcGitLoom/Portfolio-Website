@@ -123,19 +123,45 @@ export const otherExperience = [
     role: "Server",
     org: "Olive Garden",
     period: "Sep 2025 — Mar 2026",
-    summary: "Ran sections of a fast-paced dining room, handling orders and payments accurately through peak service.",
+    summary: "Ran sections of a fast-paced dining room through peak service.",
+    points: [
+      "Listened to what guests wanted and made menu recommendations that fit their tastes.",
+      "Kept orders and payments accurate across busy shifts.",
+      "Made sure every guest felt welcomed and looked after.",
+    ],
   },
   {
-    role: "Sales Representative",
-    org: "Petro-Canada Lubricants",
-    period: "Mar 2022 — Jul 2023",
-    summary: "Advised customers on products and pricing, processed transactions, and balanced daily sales.",
+    role: "Sales Associate",
+    org: "Cabela's",
+    period: "Oct 2023 — Mar 2024",
+    summary: "Advised customers on merchandise on a busy retail floor.",
+    points: [
+      "Provided product information and helped customers choose between options.",
+      "Processed sales, returns, and exchanges accurately.",
+      "Backed up teammates through peak hours to keep the floor running.",
+    ],
   },
   {
     role: "Convocation Usher",
     org: "University of Saskatchewan · On-call",
     period: "Jul 2023 — Apr 2024",
     summary: "Managed seating logistics and guest flow at formal university ceremonies.",
+    points: [
+      "Guided guests, graduates, and faculty to their seating areas and ran a smooth check-in.",
+      "Optimised seating layout for capacity and comfort.",
+      "Worked with event staff to keep each ceremony moving to schedule.",
+    ],
+  },
+  {
+    role: "Sales Representative",
+    org: "Petro-Canada Lubricants",
+    period: "Mar 2022 — Jul 2023",
+    summary: "Handled purchases, payments, and enquiries on a permanent part-time basis.",
+    points: [
+      "Gave customers accurate information on products, pricing, and services.",
+      "Processed transactions and balanced daily sales.",
+      "Built repeat relationships with regular customers.",
+    ],
   },
 ];
 
