@@ -1,16 +1,22 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { navItems, profile } from "@/lib/content";
+import { profile } from "@/lib/content";
+import { SCROLL_OFFSET } from "@/lib/scroll";
 import { Close, Menu } from "./Icons";
 
+const sections = [
+  { id: "home", label: "Home" },
+  { id: "about", label: "About" },
+  { id: "experience", label: "Experience" },
+  { id: "projects", label: "Projects" },
+  { id: "contact", label: "Contact" },
+];
+
 export function Nav() {
-  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-
+  const [active, setActive] = useState("home");
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
     onScroll();
@@ -18,15 +24,39 @@ export function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Lock background scroll while the mobile sheet is open. Closing on
-  // navigation is handled by the links' own onClick, not an effect.
+  // Scroll-spy: whichever section's top has most recently passed the same
+  // offset the browser uses to land an anchor-scrolled section (SCROLL_OFFSET,
+  // shared with each section's scroll-margin-top below). Using a different
+  // number here than the CSS uses means the browser can land a section
+  // "reached" before this loop agrees, leaving the previous link highlighted.
+  useEffect(() => {
+    const els = sections
+      .map((s) => document.getElementById(s.id))
+      .filter((el): el is HTMLElement => el !== null);
+    if (els.length === 0) return;
+
+    const onScroll = () => {
+      let current = els[0].id;
+      for (const el of els) {
+        if (el.getBoundingClientRect().top - SCROLL_OFFSET <= 1) current = el.id;
+      }
+      setActive(current);
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
+  // Lock background scroll while the mobile sheet is open.
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [open]);
-
-  const isActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
     <header
@@ -38,47 +68,46 @@ export function Nav() {
         aria-label="Primary"
         className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5 sm:px-8"
       >
-        <Link
-          href="/"
+        <a
+          href="#home"
           className="group -ml-1 flex min-h-11 min-w-11 items-center gap-2.5 rounded-full px-1 text-sm font-semibold tracking-tight"
         >
           <span className="grid h-8 w-8 place-items-center rounded-full bg-accent font-display text-[13px] font-bold text-on-accent transition-transform duration-200 group-hover:scale-105">
             {profile.name.split(" ").map((w) => w[0]).join("").slice(0, 2)}
           </span>
           <span className="hidden sm:inline">{profile.name}</span>
-        </Link>
+        </a>
 
-        {/* Desktop links */}
         <ul className="hidden items-center gap-1 md:flex">
-          {navItems.map((item) => {
-            const active = isActive(item.href);
+          {sections.map((s) => {
+            const isActive = active === s.id;
             return (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  aria-current={active ? "page" : undefined}
+              <li key={s.id}>
+                <a
+                  href={`#${s.id}`}
+                  aria-current={isActive ? "true" : undefined}
                   className={`relative cursor-pointer rounded-full px-4 py-2 text-sm transition-colors duration-200 ${
-                    active ? "text-fg" : "text-muted hover:text-fg"
+                    isActive ? "text-fg" : "text-muted hover:text-fg"
                   }`}
                 >
-                  {item.label}
+                  {s.label}
                   <span
                     className={`absolute inset-x-3 -bottom-0.5 h-px origin-center bg-accent transition-transform duration-300 ${
-                      active ? "scale-x-100" : "scale-x-0"
+                      isActive ? "scale-x-100" : "scale-x-0"
                     }`}
                   />
-                </Link>
+                </a>
               </li>
             );
           })}
         </ul>
 
-        <Link
-          href="/contact"
+        <a
+          href="#contact"
           className="hidden cursor-pointer items-center gap-2 rounded-full bg-accent px-4 py-2 text-sm font-medium text-on-accent transition-transform duration-200 hover:scale-[1.03] md:inline-flex"
         >
           Hire me
-        </Link>
+        </a>
 
         <button
           type="button"
@@ -92,39 +121,34 @@ export function Nav() {
         </button>
       </nav>
 
-      {/* Mobile sheet */}
-      <div
-        id="mobile-menu"
-        hidden={!open}
-        className="border-t border-border bg-bg md:hidden"
-      >
+      <div id="mobile-menu" hidden={!open} className="border-t border-border bg-bg md:hidden">
         <ul className="mx-auto max-w-6xl px-5 py-3">
-          {navItems.map((item) => {
-            const active = isActive(item.href);
+          {sections.map((s) => {
+            const isActive = active === s.id;
             return (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
+              <li key={s.id}>
+                <a
+                  href={`#${s.id}`}
                   onClick={() => setOpen(false)}
-                  aria-current={active ? "page" : undefined}
+                  aria-current={isActive ? "true" : undefined}
                   className={`flex min-h-11 items-center justify-between rounded-xl px-3 py-3 text-base transition-colors duration-200 ${
-                    active ? "text-accent" : "text-fg hover:bg-surface"
+                    isActive ? "text-accent" : "text-fg hover:bg-surface"
                   }`}
                 >
-                  {item.label}
-                  {active && <span className="h-1.5 w-1.5 rounded-full bg-accent" />}
-                </Link>
+                  {s.label}
+                  {isActive && <span className="h-1.5 w-1.5 rounded-full bg-accent" />}
+                </a>
               </li>
             );
           })}
           <li className="pt-2 pb-1">
-            <Link
-              href="/contact"
+            <a
+              href="#contact"
               onClick={() => setOpen(false)}
               className="flex min-h-11 items-center justify-center rounded-full bg-accent px-4 text-base font-medium text-on-accent"
             >
               Hire me
-            </Link>
+            </a>
           </li>
         </ul>
       </div>

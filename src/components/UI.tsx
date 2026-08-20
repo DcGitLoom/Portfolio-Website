@@ -2,34 +2,6 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { ArrowRight, ArrowUpRight, glyphMap, type GlyphName } from "./Icons";
 
-/** Pill action with a filled accent disc, the hero's primary affordance. */
-export function PillLink({
-  href, icon, children, external = false,
-}: {
-  href: string;
-  icon: GlyphName;
-  children: ReactNode;
-  external?: boolean;
-}) {
-  const Glyph = glyphMap[icon];
-  const inner = (
-    <>
-      <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-accent text-on-accent transition-transform duration-200 group-hover:scale-110">
-        <Glyph className="h-4 w-4" aria-hidden="true" />
-      </span>
-      <span>{children}</span>
-    </>
-  );
-  const cls =
-    "group inline-flex min-h-11 cursor-pointer items-center gap-2.5 rounded-full border border-border bg-surface/80 py-1.5 pl-1.5 pr-5 text-sm font-medium text-fg backdrop-blur transition-all duration-200 hover:border-accent/50 hover:bg-surface-2";
-
-  return external ? (
-    <a href={href} className={cls} target="_blank" rel="noreferrer noopener">{inner}</a>
-  ) : (
-    <Link href={href} className={cls}>{inner}</Link>
-  );
-}
-
 export function SectionHeading({
   eyebrow, title, lead, id,
 }: {
@@ -67,7 +39,7 @@ export function Tag({ children }: { children: ReactNode }) {
 
 /** Card used by the home "what I do" grid. */
 export function DisciplineCard({
-  title, blurb, tags, glyph, href = "/projects",
+  title, blurb, tags, glyph, href = "#projects",
 }: {
   title: string;
   blurb: string;
@@ -77,7 +49,7 @@ export function DisciplineCard({
 }) {
   const Glyph = glyphMap[glyph];
   return (
-    <Link
+    <a
       href={href}
       aria-label={`${title}: see related projects`}
       className="group relative flex h-full cursor-pointer flex-col overflow-hidden rounded-2xl border border-border bg-surface p-5 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40"
@@ -102,7 +74,7 @@ export function DisciplineCard({
       <div className="relative mt-4 flex flex-wrap gap-1.5">
         {tags.map((t) => <Tag key={t}>{t}</Tag>)}
       </div>
-    </Link>
+    </a>
   );
 }
 
@@ -203,31 +175,3 @@ export function CtaBand({
   );
 }
 
-/** Page header shared by the four interior routes. */
-export function PageHeader({
-  eyebrow, title, lead,
-}: {
-  eyebrow: string;
-  title: string;
-  lead: string;
-}) {
-  return (
-    <header className="relative overflow-hidden border-b border-border">
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{ background: "radial-gradient(50% 120% at 15% 0%, rgba(34,197,94,0.10), transparent 70%)" }}
-        aria-hidden="true"
-      />
-      <div className="relative mx-auto max-w-6xl px-5 pt-16 pb-14 sm:px-8 sm:pt-20">
-        <div className="mb-5 flex items-center gap-3">
-          <span className="h-px w-10 bg-accent" />
-          <span className="font-display text-xs uppercase tracking-[0.22em] text-accent">{eyebrow}</span>
-        </div>
-        <h1 className="font-display text-4xl leading-[1.08] font-light tracking-tight text-balance sm:text-5xl md:text-6xl">
-          {title}
-        </h1>
-        <p className="mt-6 max-w-2xl text-[15px] leading-relaxed text-muted">{lead}</p>
-      </div>
-    </header>
-  );
-}

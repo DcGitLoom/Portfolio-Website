@@ -21,23 +21,6 @@ export const profile = {
   availableLabel: "Open to new-grad & internship roles",
 } as const;
 
-export type NavItem = { label: string; href: string };
-
-export const navItems: NavItem[] = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Experience", href: "/experience" },
-  { label: "Projects", href: "/projects" },
-  { label: "Contact", href: "/contact" },
-];
-
-/** The three pill actions across the top of the hero. */
-export const heroActions = [
-  { label: "See my work", href: "/projects", icon: "grid" as const },
-  { label: "About me", href: "/about", icon: "doc" as const },
-  { label: "Get in touch", href: "/contact", icon: "chat" as const },
-];
-
 export const toolbelt = [
   "JavaScript", "Python", "Java", "C", "React", "Node.js",
   "Express", "MySQL", "MongoDB", "Docker", "Vitest", "Git",
