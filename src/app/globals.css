@@ -32,6 +32,7 @@
   --color-on-accent: var(--on-accent);
   --font-sans: var(--font-archivo);
   --font-display: var(--font-space-grotesk);
+  --font-wordmark: var(--font-syne);
 }
 
 html {

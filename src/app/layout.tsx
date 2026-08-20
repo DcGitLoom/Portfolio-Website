@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Archivo, Space_Grotesk } from "next/font/google";
+import { Archivo, Space_Grotesk, Syne } from "next/font/google";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { profile } from "@/lib/content";
@@ -20,6 +20,14 @@ const spaceGrotesk = Space_Grotesk({
   display: "swap",
 });
 
+// Signature face, used only for the name lockup in the hero.
+const syne = Syne({
+  variable: "--font-syne",
+  subsets: ["latin"],
+  weight: ["700", "800"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: {
     default: `${profile.name} — ${profile.role}`,
@@ -37,7 +45,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${archivo.variable} ${spaceGrotesk.variable} h-full antialiased`}
+      className={`${archivo.variable} ${spaceGrotesk.variable} ${syne.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-bg text-fg">
         <a

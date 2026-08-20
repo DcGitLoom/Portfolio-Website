@@ -94,15 +94,15 @@ export function HeroVisual({ name, wordmark, surname }: { name: string; wordmark
         already announces the name, so this repetition is decorative.
       */}
       <div
-        className="absolute bottom-[17%] left-1/2 w-full -translate-x-1/2 text-center"
+        className="absolute bottom-[12%] left-1/2 w-full -translate-x-1/2 text-center"
         aria-hidden="true"
       >
-        <p className="font-display text-[0.7rem] font-semibold uppercase tracking-[0.42em] text-accent sm:text-[0.8rem]">
+        <p className="font-display text-[0.7rem] font-semibold uppercase tracking-[0.44em] text-white/90 sm:text-[0.78rem]">
           {surname}
         </p>
         <p
-          className="mt-1 font-display font-bold leading-[0.88] tracking-tight text-white"
-          style={{ fontSize: "clamp(2.8rem, 22cqw, 5.2rem)", textShadow: "0 6px 28px rgba(0,0,0,0.55)" }}
+          className="mt-1.5 font-wordmark font-extrabold leading-[0.85] tracking-[-0.03em] text-white"
+          style={{ fontSize: "clamp(2.1rem, 17cqw, 3.9rem)", textShadow: "0 6px 30px rgba(0,0,0,0.6)" }}
         >
           {wordmark}
         </p>
