@@ -18,8 +18,7 @@ React 19, TypeScript, and Tailwind CSS v4.
 All copy lives in **`src/lib/content.ts`** — name, intro, experience, projects,
 and social links. Edit that one file and every page updates.
 
-The résumé placeholders (`Placeholder Technologies`, `Your University`, the social
-handles) are there to be replaced with your real details.
+Content reflects Dhruv Chaudhari's résumé and LinkedIn profile as of August 2026.
 
 ## Design system
 

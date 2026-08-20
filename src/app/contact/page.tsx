@@ -80,14 +80,14 @@ export default function ContactPage() {
             <div className="rounded-2xl border border-border bg-surface p-6">
               <h3 className="font-display text-sm font-medium">What I am looking for</h3>
               <p className="mt-2.5 text-sm leading-relaxed text-muted">
-                Summer internships in backend, distributed systems, or applied machine learning —
-                and open-source projects that need an extra pair of hands.
+                New-grad and internship roles in full-stack or backend development, in Saskatchewan
+                or remote. I am equally happy writing the API or the tests around it.
               </p>
             </div>
             <div className="rounded-2xl border border-border bg-surface p-6">
               <h3 className="font-display text-sm font-medium">Based in</h3>
               <p className="mt-2.5 text-sm leading-relaxed text-muted">
-                {profile.location}, and comfortable working remotely across time zones.
+{profile.location}, Canada — and comfortable working remotely across time zones.
               </p>
             </div>
           </div>

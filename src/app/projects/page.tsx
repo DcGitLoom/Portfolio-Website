@@ -5,7 +5,7 @@ import { profile, projects } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Projects",
-  description: `Software projects built by ${profile.name} — distributed systems, compilers, machine learning, and web applications.`,
+  description: `Full-stack web applications built by ${profile.name} — React, Node.js, Express, MySQL, and Docker.`,
 };
 
 export default function ProjectsPage() {
@@ -16,13 +16,13 @@ export default function ProjectsPage() {
     <>
       <PageHeader
         eyebrow="Projects"
-        title="Things I built to answer a question."
-        lead="Each of these started because reading about the idea was not enough. Descriptions focus on what the project does and what it cost to make it work."
+        title="Full-stack applications I have built."
+        lead="Three projects — one solo, two on Agile teams. Each description says what the system does and which parts I was responsible for."
       />
 
       <section className="mx-auto max-w-6xl px-5 py-20 sm:px-8">
         <Reveal>
-          <SectionHeading eyebrow="Featured" title="Work I am most proud of" />
+          <SectionHeading eyebrow="Selected work" title="Projects" />
         </Reveal>
         <div className="mt-12 grid gap-5 lg:grid-cols-3">
           {featured.map((p, i) => (
@@ -33,22 +33,24 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-5 pb-20 sm:px-8">
-        <Reveal>
-          <SectionHeading eyebrow="Also built" title="Other projects" />
-        </Reveal>
-        <div className="mt-12 grid gap-5 md:grid-cols-3">
-          {others.map((p, i) => (
-            <Reveal key={p.name} delay={i * 80} className="h-full">
-              <ProjectCard {...p} />
-            </Reveal>
-          ))}
-        </div>
-      </section>
+      {others.length > 0 && (
+        <section className="mx-auto max-w-6xl px-5 pb-20 sm:px-8">
+          <Reveal>
+            <SectionHeading eyebrow="Also built" title="Other projects" />
+          </Reveal>
+          <div className="mt-12 grid gap-5 md:grid-cols-3">
+            {others.map((p, i) => (
+              <Reveal key={p.name} delay={i * 80} className="h-full">
+                <ProjectCard {...p} />
+              </Reveal>
+            ))}
+          </div>
+        </section>
+      )}
 
       <CtaBand
         title="Curious about the code?"
-        body="Most of these live on GitHub with a README explaining the design decisions and the trade-offs I made."
+        body="PCubed and Discussion Board are on GitHub. Happy to walk through any of the architecture or testing decisions."
         href="/contact"
         label="Ask me anything"
       />

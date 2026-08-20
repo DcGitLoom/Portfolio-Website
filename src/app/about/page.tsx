@@ -5,21 +5,21 @@ import { education, profile, stats, toolbelt } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "About",
-  description: `About ${profile.name} — ${profile.role} focused on full-stack, systems, and applied machine learning.`,
+  description: `About ${profile.name} — Computer Science student at the University of Saskatchewan building full-stack web applications.`,
 };
 
 const values = [
   {
-    title: "Correctness before cleverness",
-    body: "A clever solution nobody can modify is a liability. I optimise for the person reading the code six months from now — often me.",
+    title: "Reliability over cleverness",
+    body: "Software that works for real people has to keep working. I would rather ship something predictable than something impressive that falls over on the second try.",
   },
   {
-    title: "Measure, then optimise",
-    body: "I profile before I tune. Most performance intuitions are wrong, and a benchmark settles the argument faster than a discussion does.",
+    title: "Test it before someone else does",
+    body: "Writing tests first changes what you build, not just what you verify. Unit, integration, and end-to-end each catch a different class of mistake, and load testing catches the ones that only appear under pressure.",
   },
   {
-    title: "Finish the boring 20%",
-    body: "Error paths, docs, and the deploy story are what separate a demo from something usable. That part is the job, not an afterthought.",
+    title: "Clean code and honest feedback",
+    body: "The best teams I have worked on said what was actually wrong with a pull request. Code review is where the standard gets set, so it is worth being direct.",
   },
 ];
 
@@ -28,7 +28,7 @@ export default function AboutPage() {
     <>
       <PageHeader
         eyebrow="About me"
-        title="I build systems, and I like understanding them all the way down."
+        title="I build software that works for real people."
         lead={profile.intro}
       />
 
@@ -38,21 +38,24 @@ export default function AboutPage() {
             <SectionHeading eyebrow="Background" title="How I got here" />
             <div className="mt-8 space-y-5 text-[15px] leading-relaxed text-muted">
               <p>
-                I started programming because I wanted to know why my computer did what it did.
-                That curiosity turned into a computer science degree, and along the way into a
-                habit of rebuilding things from scratch — a queue, a compiler, a search engine —
-                purely to see the machinery underneath.
+                I am a Computer Science major at the University of Saskatchewan with a minor in
+                Mathematics. Between a year of IT support at eHealth Saskatchewan and a set of
+                full-stack projects, I have spent most of my degree learning to bridge the gap
+                between complex backend logic and an interface someone can actually use.
               </p>
               <p>
-                Most of my time now goes to full-stack and backend work. I am comfortable owning a
-                feature end to end: schema, API, interface, tests, and the deploy that puts it in
-                front of people. I have also spent enough hours on competitive programming that
-                reasoning about complexity is automatic rather than deliberate.
+                That work has ranged from independently architecting a Dockerised Q&amp;A platform
+                to collaborating on a thirteen-person Agile team replacing a legacy archaeological
+                database across five milestones. On that project I owned the RESTful CRUD endpoints,
+                the container setup, the CI/CD pipeline, and the test suite — unit through
+                end-to-end, plus load and stress runs to confirm the system held under real
+                conditions.
               </p>
               <p>
-                Outside coursework I contribute to open source, mentor first-year students, and keep
-                a running list of systems papers I intend to reimplement. The list grows faster than
-                it shrinks.
+                The year at eHealth taught me a different lesson. Resolving high-volume technical
+                tickets means the person on the other end is already blocked, so documenting the fix
+                properly matters as much as finding it. Whichever side I am on, the focus is the
+                same: reliability and scale.
               </p>
             </div>
 
@@ -121,9 +124,9 @@ export default function AboutPage() {
 
       <CtaBand
         title="Want the full résumé?"
-        body="Happy to send a PDF with detailed coursework, references, and project write-ups."
+        body="Happy to send a PDF with detailed coursework and references, or to talk through any of the projects."
         href="/contact"
-        label="Request résumé"
+        label="Get in touch"
       />
     </>
   );

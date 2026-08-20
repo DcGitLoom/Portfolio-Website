@@ -107,26 +107,21 @@ export function DisciplineCard({
 }
 
 export function ProjectCard({
-  name, tagline, stack, year, highlights, featured,
+  name, tagline, stack, year, highlights, href,
 }: {
   name: string;
   tagline: string;
   stack: readonly string[];
   year: string;
   highlights: readonly string[];
+  /** Selects which projects the home page shows; not rendered. */
   featured?: boolean;
+  href?: string;
 }) {
   return (
     <article className="group relative flex h-full flex-col rounded-2xl border border-border bg-surface p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40">
       <div className="flex items-start justify-between gap-4">
-        <div className="flex items-center gap-2.5">
-          <h3 className="font-display text-xl font-medium tracking-tight">{name}</h3>
-          {featured && (
-            <span className="rounded-full bg-accent/15 px-2 py-0.5 font-display text-[10px] uppercase tracking-wider text-accent">
-              Featured
-            </span>
-          )}
-        </div>
+        <h3 className="font-display text-xl font-medium tracking-tight">{name}</h3>
         <span className="shrink-0 font-display text-xs text-muted">{year}</span>
       </div>
 
@@ -144,6 +139,19 @@ export function ProjectCard({
       <div className="mt-5 flex flex-wrap items-center gap-1.5 border-t border-border pt-4">
         {stack.map((s) => <Tag key={s}>{s}</Tag>)}
       </div>
+
+      {href && (
+        <a
+          href={href}
+          target="_blank"
+          rel="noreferrer noopener"
+          className="mt-4 inline-flex min-h-11 cursor-pointer items-center gap-1.5 text-sm text-muted transition-colors duration-200 hover:text-accent"
+        >
+          View source
+          <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+          <span className="sr-only">for {name} (opens in a new tab)</span>
+        </a>
+      )}
     </article>
   );
 }

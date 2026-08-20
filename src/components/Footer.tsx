@@ -15,7 +15,7 @@ export function Footer() {
               <span className="text-sm font-semibold tracking-tight">{profile.name}</span>
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-muted">
-              {profile.role} — building full-stack products, systems, and machine learning tools.
+              {profile.role} at the University of Saskatchewan, building full-stack web applications.
             </p>
           </div>
 

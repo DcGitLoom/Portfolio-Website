@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Reveal } from "@/components/Reveal";
 import { CtaBand, PageHeader, Tag } from "@/components/UI";
-import { education, experience, profile } from "@/lib/content";
+import { education, experience, otherExperience, profile } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Experience",
@@ -13,11 +13,14 @@ export default function ExperiencePage() {
     <>
       <PageHeader
         eyebrow="Experience"
-        title="Where I have worked, and what I actually shipped."
-        lead="Internships, research, and teaching — described by outcome rather than by responsibility, because what got delivered is the part that matters."
+        title="Where I have worked, and what I actually did."
+        lead="A year-long IT internship at eHealth Saskatchewan, university contract work, and the customer-facing roles I held alongside full-time study."
       />
 
-      <section className="mx-auto max-w-4xl px-5 py-20 sm:px-8">
+      <section className="mx-auto max-w-4xl px-5 pt-20 pb-12 sm:px-8">
+        <h2 className="mb-10 pl-9 font-display text-xs uppercase tracking-[0.18em] text-muted sm:pl-12">
+          Technical &amp; university roles
+        </h2>
         <ol className="relative">
           {/* Timeline spine */}
           <span
@@ -60,8 +63,28 @@ export default function ExperiencePage() {
         </ol>
       </section>
 
+      <section className="mx-auto max-w-4xl px-5 pb-12 sm:px-8">
+        <Reveal className="pl-9 sm:pl-12">
+          <h2 className="font-display text-xs uppercase tracking-[0.18em] text-muted">
+            Alongside full-time study
+          </h2>
+          <ul className="mt-5 grid gap-4 sm:grid-cols-2">
+            {otherExperience.map((job) => (
+              <li key={`${job.org}-${job.role}`} className="rounded-2xl border border-border bg-surface p-5">
+                <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+                  <h3 className="font-display text-base font-medium tracking-tight">{job.role}</h3>
+                  <span className="font-display text-xs whitespace-nowrap text-muted">{job.period}</span>
+                </div>
+                <p className="mt-1 text-sm text-accent">{job.org}</p>
+                <p className="mt-3 text-sm leading-relaxed text-muted">{job.summary}</p>
+              </li>
+            ))}
+          </ul>
+        </Reveal>
+      </section>
+
       <section className="mx-auto max-w-4xl px-5 pb-20 sm:px-8">
-        {/* Same left offset as the timeline cards so the two blocks share an edge. */}
+        {/* Same left offset as the timeline cards so the blocks share an edge. */}
         <Reveal className="pl-9 sm:pl-12">
           <h2 className="font-display text-xs uppercase tracking-[0.18em] text-muted">Education</h2>
           {education.map((e) => (
@@ -78,8 +101,8 @@ export default function ExperiencePage() {
       </section>
 
       <CtaBand
-        title="Hiring for summer internships?"
-        body="I am looking for backend, systems, or applied ML work where I can own something end to end."
+        title="Hiring a new grad or intern?"
+        body="I am looking for full-stack or backend work where I can own a feature end to end — from the schema through to the tests that keep it honest."
         href="/contact"
         label="Start a conversation"
       />

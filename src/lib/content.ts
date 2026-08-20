@@ -8,13 +8,15 @@ export const profile = {
   wordmark: "dhruv",
   kicker: "Computer Science",
   role: "Computer Science Student",
-  discipline: "Full-Stack Developer\n& Systems Engineer",
+  discipline: "Full-Stack Developer\n& Software Engineer",
   intro:
-    "Hi, I'm Dhruv, a computer science student building full-stack products, distributed systems, and machine learning tools. I care about clean architecture, measurable performance, and software that stays readable a year later.",
-  location: "India",
+    "Hi, I'm Dhruv — a Computer Science student at the University of Saskatchewan with a minor in Mathematics. I build software that works for real people, bridging complex backend logic and interfaces people can actually use. My focus is reliability and scale, whether that means RESTful APIs, CI/CD pipelines, or a test suite that catches things before users do.",
+  location: "Saskatoon, Saskatchewan",
   email: "dhruvchaudhari51659@gmail.com",
   github: "https://github.com/DcGitLoom",
+  linkedin: "https://www.linkedin.com/in/dhruv-chaudhari-b999192a4",
   available: true,
+  availableLabel: "Open to new-grad & internship roles",
 } as const;
 
 export type NavItem = { label: string; href: string };
@@ -30,200 +32,166 @@ export const navItems: NavItem[] = [
 /** The three pill actions across the top of the hero. */
 export const heroActions = [
   { label: "See my work", href: "/projects", icon: "grid" as const },
-  { label: "My résumé", href: "/about", icon: "doc" as const },
+  { label: "About me", href: "/about", icon: "doc" as const },
   { label: "Get in touch", href: "/contact", icon: "chat" as const },
 ];
 
 export const toolbelt = [
-  "TypeScript", "Python", "React", "Next.js", "Node.js", "PostgreSQL",
-  "Docker", "Go", "Rust", "AWS", "Redis", "Kubernetes",
+  "JavaScript", "Python", "Java", "C", "React", "Node.js",
+  "Express", "MySQL", "MongoDB", "Docker", "Vitest", "Git",
 ];
 
 /** Home page "what I do" grid. */
 export const disciplines = [
   {
-    title: "Full-Stack Engineering",
-    blurb: "End-to-end web apps with typed APIs, sensible data models, and tests that mean something.",
-    tags: ["Next.js", "Node", "PostgreSQL"],
+    title: "Full-Stack Web Development",
+    blurb: "End-to-end applications on the MERN and SERN stacks — React on the front, Node and Express behind it, SQL or Mongo underneath.",
+    tags: ["React", "Node.js", "Express"],
     glyph: "stack" as const,
   },
   {
-    title: "Machine Learning",
-    blurb: "Applied ML — training loops, evaluation harnesses, and getting models into production.",
-    tags: ["PyTorch", "NumPy", "MLflow"],
-    glyph: "spark" as const,
-  },
-  {
-    title: "Systems & Backend",
-    blurb: "Concurrency, caching layers, and services that hold their latency budget under load.",
-    tags: ["Go", "Rust", "Redis"],
+    title: "REST API Design",
+    blurb: "CRUD endpoints structured around MVC, so the routing, data access, and business logic stay in separate places.",
+    tags: ["REST", "MVC", "MySQL"],
     glyph: "server" as const,
   },
   {
-    title: "Data Structures & Algorithms",
-    blurb: "Competitive programming background — complexity analysis is a reflex, not a chore.",
-    tags: ["C++", "Python"],
+    title: "Testing & QA",
+    blurb: "Unit, integration, end-to-end, and coverage tests written test-first, plus load and stress runs to see what actually breaks.",
+    tags: ["Vitest", "TDD", "E2E"],
     glyph: "graph" as const,
   },
   {
-    title: "Cloud & DevOps",
-    blurb: "Containerised deploys, CI pipelines, and infrastructure that is reproducible from a clean clone.",
-    tags: ["Docker", "AWS", "GH Actions"],
+    title: "Docker & CI/CD",
+    blurb: "Containerised services and pipelines that build, test, and deploy without anyone running steps by hand.",
+    tags: ["Docker", "CI/CD"],
     glyph: "cloud" as const,
   },
   {
-    title: "Open Source",
-    blurb: "Contributing patches, writing docs, and maintaining small libraries other people actually use.",
-    tags: ["Git", "OSS"],
+    title: "Agile Delivery",
+    blurb: "Scrum on real teams — one of them thirteen people delivering across five incremental milestones.",
+    tags: ["Scrum", "Agile"],
     glyph: "branch" as const,
+  },
+  {
+    title: "IT Support & Troubleshooting",
+    blurb: "A year on a service desk diagnosing hardware, software, and network faults, and documenting the fixes so they scale.",
+    tags: ["Support", "Ticketing"],
+    glyph: "spark" as const,
   },
 ];
 
 export const stats = [
-  { value: "12+", label: "Projects shipped" },
-  { value: "5", label: "Languages used in production" },
-  { value: "800+", label: "DSA problems solved" },
-  { value: "3", label: "Open-source contributions" },
+  { value: "3", label: "Full-stack apps built" },
+  { value: "1 yr", label: "IT support internship at eHealth" },
+  { value: "13", label: "Person Agile team on PCubed" },
+  { value: "5", label: "Incremental milestones delivered" },
 ];
 
+/** Software and university roles — the work most relevant to engineering. */
 export const experience = [
   {
-    role: "Software Engineering Intern",
-    org: "Placeholder Technologies",
-    period: "Jun 2026 — Aug 2026",
+    role: "Service Desk Analyst",
+    org: "eHealth Saskatchewan · Internship",
+    period: "May 2024 — Apr 2025",
     summary:
-      "Built an internal analytics service consumed by three product teams, cutting a nightly report job from 40 minutes to under 4.",
+      "A year-long professional internship providing frontline technical support across the provincial health IT system.",
     points: [
-      "Designed a partitioned PostgreSQL schema and rewrote the aggregation pipeline in Go.",
-      "Added a Redis read-through cache, dropping p95 dashboard latency from 1.8s to 220ms.",
-      "Wrote the integration test suite that now gates every deploy to production.",
+      "Diagnosed and resolved hardware, software, and network faults, keeping disruption to clinical workflow minimal.",
+      "Documented incidents and their solutions in the ticketing system, building a knowledge base others could work from.",
+      "Escalated and resolved complex issues with cross-functional IT teams.",
     ],
-    stack: ["Go", "PostgreSQL", "Redis", "Docker"],
+    stack: ["Troubleshooting", "Ticketing", "Documentation"],
   },
   {
-    role: "Undergraduate Research Assistant",
-    org: "University Systems Lab",
-    period: "Jan 2026 — May 2026",
+    role: "Grader — Math 110",
+    org: "University of Saskatchewan · Contract",
+    period: "Jan 2024 — Apr 2024",
     summary:
-      "Investigated scheduling strategies for GPU-shared training workloads under a faculty advisor.",
+      "Marked assignments and exams for a first-year mathematics course.",
     points: [
-      "Implemented a simulation harness in Python to compare four scheduling policies.",
-      "Reproduced the baseline results from two prior papers and documented the deltas.",
-      "Presented findings to the lab and contributed the harness back to the group's repo.",
+      "Evaluated student work for fairness and accuracy, and fed patterns in the mistakes back to instructors.",
+      "Maintained grade records and handled course materials under academic confidentiality.",
     ],
-    stack: ["Python", "PyTorch", "Matplotlib"],
+    stack: ["Mathematics", "Assessment"],
+  },
+];
+
+/** Customer-facing roles held alongside full-time study. */
+export const otherExperience = [
+  {
+    role: "Server",
+    org: "Olive Garden",
+    period: "Sep 2025 — Mar 2026",
+    summary: "Ran sections of a fast-paced dining room, handling orders and payments accurately through peak service.",
   },
   {
-    role: "Teaching Assistant — Data Structures",
-    org: "Department of Computer Science",
-    period: "Aug 2025 — Dec 2025",
-    summary:
-      "Ran weekly lab sections for 60 second-year students and graded algorithm assignments.",
-    points: [
-      "Held office hours focused on debugging technique rather than answers.",
-      "Authored four supplementary problem sets on graphs and dynamic programming.",
-    ],
-    stack: ["C++", "Java"],
+    role: "Sales Representative",
+    org: "Petro-Canada Lubricants",
+    period: "Mar 2022 — Jul 2023",
+    summary: "Advised customers on products and pricing, processed transactions, and balanced daily sales.",
   },
   {
-    role: "Freelance Web Developer",
-    org: "Self-employed",
-    period: "2024 — 2025",
-    summary:
-      "Delivered five small-business sites end to end, from design through deployment and handover.",
-    points: [
-      "Shipped every project on static hosting with sub-second first paint.",
-      "Handed each client a written maintenance guide so they were not dependent on me.",
-    ],
-    stack: ["Next.js", "Tailwind", "Vercel"],
+    role: "Convocation Usher",
+    org: "University of Saskatchewan · On-call",
+    period: "Jul 2023 — Apr 2024",
+    summary: "Managed seating logistics and guest flow at formal university ceremonies.",
   },
 ];
 
 export const education = [
   {
     degree: "B.Sc. Computer Science",
-    org: "Your University",
-    period: "2024 — 2028",
-    detail: "Coursework: Algorithms, Operating Systems, Databases, Distributed Systems, Machine Learning, Compilers.",
+    org: "University of Saskatchewan",
+    period: "2022 — 2026",
+    detail: "Minor in Mathematics. Software engineering coursework (CMPT 371) produced the PCubed team project below.",
   },
 ];
 
 export const projects = [
   {
-    name: "Distributed Task Queue",
-    tagline: "A fault-tolerant job queue with at-least-once delivery and exponential backoff.",
-    stack: ["Go", "Redis", "gRPC", "Docker"],
+    name: "PCubed",
+    tagline: "A full-stack replacement for a legacy archaeological database, delivered by a 13-person Agile team.",
+    stack: ["React", "Node.js", "Express", "MySQL", "Docker", "Vitest"],
     highlights: [
-      "Sustains 12k jobs/sec on a single node in benchmarks",
-      "Leases reclaimed within 5s of a worker crash",
-      "Property-based tests covering the retry state machine",
+      "Built the RESTful CRUD endpoints for artifact and site data",
+      "Wrote unit, integration, end-to-end, and coverage tests test-first",
+      "Set up Docker containerisation and the CI/CD pipeline",
+      "Ran load, stress, and UX testing to check behaviour under real conditions",
     ],
-    year: "2026",
+    href: "https://github.com/UniversityOfSaskatchewanCMPT371/term-project-2024-team-4",
+    year: "2024",
     featured: true,
   },
   {
-    name: "Semantic Code Search",
-    tagline: "Embedding-based search across a codebase, with ranking you can explain.",
-    stack: ["Python", "PyTorch", "FastAPI", "pgvector"],
+    name: "Discussion Board",
+    tagline: "A Dockerised Q&A platform where developers ask programming questions inside topic-based channels.",
+    stack: ["React", "Node.js", "Express", "MySQL", "Docker"],
     highlights: [
-      "Sub-100ms query latency over 40k indexed chunks",
-      "Hybrid lexical + vector scoring with tunable weights",
-      "Evaluation set of 200 labelled queries to catch regressions",
+      "Threaded replies, code screenshot uploads, and like/dislike voting",
+      "Bookmarking so users can return to channels and questions",
+      "Admin dashboard for managing users and channels",
+      "Whole stack comes up with a single docker compose up — no manual setup",
     ],
-    year: "2026",
-    featured: true,
-  },
-  {
-    name: "Toy Compiler",
-    tagline: "A statically typed language compiled to a custom bytecode VM.",
-    stack: ["Rust", "LLVM IR"],
-    highlights: [
-      "Full pipeline from source text to executing bytecode",
-      "Type inference for local bindings",
-      "180 test programs pinning language semantics",
-    ],
+    href: "https://github.com/DcGitLoom/Discussion-Board",
     year: "2025",
     featured: true,
   },
   {
-    name: "Realtime Collaboration Editor",
-    tagline: "Multi-cursor text editing backed by CRDTs.",
-    stack: ["TypeScript", "React", "WebSocket", "Yjs"],
+    name: "Doc-Directory",
+    tagline: "A platform that simplifies finding, filtering, and booking appointments with healthcare professionals.",
+    stack: ["MongoDB", "Express", "React", "Node.js"],
     highlights: [
-      "Convergence verified with randomised concurrent-edit fuzzing",
-      "Offline edits reconcile cleanly on reconnect",
-    ],
-    year: "2025",
-    featured: false,
-  },
-  {
-    name: "Campus Transit Tracker",
-    tagline: "Live shuttle positions and arrival predictions for a university campus.",
-    stack: ["Next.js", "PostgreSQL", "Mapbox"],
-    highlights: [
-      "Arrival predictions within ±90s of actual on average",
-      "Used by roughly 400 students over one semester",
-    ],
-    year: "2025",
-    featured: false,
-  },
-  {
-    name: "dotfiles & devbox",
-    tagline: "A reproducible development environment from a single clone.",
-    stack: ["Nix", "Bash", "Docker"],
-    highlights: [
-      "Clean machine to working environment in under 4 minutes",
-      "Same image used locally and in CI",
+      "Search and filter practitioners, then book directly",
+      "Built on the MERN stack following Agile web development practice",
     ],
     year: "2024",
-    featured: false,
+    featured: true,
   },
 ];
 
 export const socials = [
   { label: "Email", href: `mailto:${profile.email}`, icon: "mail" as const },
   { label: "GitHub", href: profile.github, icon: "github" as const },
-  { label: "LinkedIn", href: "https://linkedin.com/in/your-handle", icon: "linkedin" as const },
-  { label: "X", href: "https://x.com/your-handle", icon: "x" as const },
-  { label: "LeetCode", href: "https://leetcode.com/your-handle", icon: "code" as const },
+  { label: "LinkedIn", href: profile.linkedin, icon: "linkedin" as const },
 ];
