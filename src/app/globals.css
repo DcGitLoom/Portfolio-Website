@@ -116,6 +116,19 @@ body {
   transform-origin: center;
 }
 
+/*
+  Nodes ride the outer ring, so without this their labels tumble as the ring
+  turns. Counter-rotating each node about its own centre at the ring's exact
+  period cancels the spin and leaves the text upright.
+  transform-box: fill-box is required — an SVG element's transform-origin is
+  otherwise the user-space origin, not the element's own box.
+*/
+.orbit-node {
+  animation: orbit 26s linear infinite reverse;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
 .pulse-ring {
   animation: pulse-ring 4.6s ease-in-out infinite;
   transform-origin: center;
@@ -153,4 +166,5 @@ body {
   }
 
   .marquee-track { animation: none; }
+  .orbit-node { animation: none; }
 }

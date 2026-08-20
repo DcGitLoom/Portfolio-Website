@@ -8,7 +8,6 @@ import {
 import { disciplines, heroActions, profile, projects, stats, toolbelt } from "@/lib/content";
 
 export default function Home() {
-  const initials = profile.name.split(" ").map((w) => w[0]).join("").slice(0, 2);
   const featured = projects.filter((p) => p.featured);
 
   return (
@@ -50,7 +49,7 @@ export default function Home() {
             </Reveal>
 
             <Reveal delay={160} className="order-1 drift lg:order-2">
-              <HeroVisual initials={initials} />
+              <HeroVisual name={profile.name} />
             </Reveal>
 
             <Reveal delay={240} className="order-3">
