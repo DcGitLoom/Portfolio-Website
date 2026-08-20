@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { profile } from "@/lib/content";
 import { SCROLL_OFFSET } from "@/lib/scroll";
-import { Close, Menu } from "./Icons";
+import { ArrowUpRight, Close, Menu } from "./Icons";
 
 const sections = [
   { id: "home", label: "Home" },
@@ -103,10 +103,16 @@ export function Nav() {
         </ul>
 
         <a
-          href="#contact"
-          className="hidden cursor-pointer items-center gap-2 rounded-full bg-accent px-4 py-2 text-sm font-medium text-on-accent transition-transform duration-200 hover:scale-[1.03] md:inline-flex"
+          href={profile.resume}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group hidden cursor-pointer items-center gap-2 rounded-full bg-accent px-4 py-2 text-sm font-medium text-on-accent transition-transform duration-200 hover:scale-[1.03] md:inline-flex"
         >
-          Hire me
+          Résumé
+          <ArrowUpRight
+            className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            aria-hidden="true"
+          />
         </a>
 
         <button
@@ -143,11 +149,14 @@ export function Nav() {
           })}
           <li className="pt-2 pb-1">
             <a
-              href="#contact"
+              href={profile.resume}
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setOpen(false)}
-              className="flex min-h-11 items-center justify-center rounded-full bg-accent px-4 text-base font-medium text-on-accent"
+              className="flex min-h-11 items-center justify-center gap-2 rounded-full bg-accent px-4 text-base font-medium text-on-accent"
             >
-              Hire me
+              Résumé
+              <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
             </a>
           </li>
         </ul>

@@ -1,6 +1,39 @@
 import Link from "next/link";
+import { SCROLL_OFFSET } from "@/lib/scroll";
 import type { ReactNode } from "react";
 import { ArrowRight, ArrowUpRight, glyphMap, type GlyphName } from "./Icons";
+
+/**
+ * One shell for every section, so headings, prose, and card grids across the
+ * whole page land on the same left baseline instead of drifting per-section.
+ *
+ * The divider and vertical rhythm sit on the outer element and the width
+ * clamp sits on the inner one: that way the rule spans the full viewport
+ * while content stays in the container. min-h-screen is a floor, not a fixed
+ * height, so tall sections still grow and nothing clips.
+ */
+export function Section({
+  id, children, divider = true, className = "",
+}: {
+  id?: string;
+  children: ReactNode;
+  divider?: boolean;
+  className?: string;
+}) {
+  return (
+    <section
+      id={id}
+      style={id ? { scrollMarginTop: SCROLL_OFFSET } : undefined}
+      className={[
+        divider ? "border-t border-border/60" : "",
+        "flex min-h-screen flex-col justify-center py-20 md:py-28",
+        className,
+      ].filter(Boolean).join(" ")}
+    >
+      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">{children}</div>
+    </section>
+  );
+}
 
 export function SectionHeading({
   eyebrow, title, lead, id,
