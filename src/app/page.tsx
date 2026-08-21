@@ -166,7 +166,7 @@ export default function Home() {
           </Reveal>
 
           {/* Copy: short, first person, one accented pivot word. */}
-          <Reveal delay={100}>
+          <Reveal delay={100} className="text-plate">
             <div className="mb-6 flex items-center gap-3">
               <span className="h-px w-10 bg-accent" />
               <span className="font-display text-xs uppercase tracking-[0.22em] text-accent">About me</span>
@@ -204,92 +204,11 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* ================= Experience ================= */}
-      <Section id="experience">
-        <Reveal>
-          <SectionHeading
-            eyebrow="Experience"
-            title="Where I have worked, and what I actually did."
-            lead="A year-long IT internship at eHealth Saskatchewan and university contract work, plus the side hustles that paid for the degree."
-          />
-        </Reveal>
-
-        {/* Clamped but left-aligned, so the timeline keeps a readable measure
-            without leaving the page's shared left baseline. */}
-        <div className="mt-14 max-w-4xl">
-          {/* Sits on the page's left baseline, like every other heading; the
-              rail below starts here too and the cards hang off it. */}
-          <h3 className="mb-8 font-display text-xs uppercase tracking-[0.18em] text-muted">
-            Internship &amp; university roles
-          </h3>
-          <ol className="relative">
-            <span className="absolute left-[7px] top-2 bottom-2 w-px bg-border sm:left-[9px]" aria-hidden="true" />
-            {experience.map((job, i) => (
-              <Reveal as="li" key={`${job.org}-${job.role}`} delay={i * 90} className="relative pl-9 pb-8 last:pb-0 sm:pl-12">
-                <span className="absolute left-0 top-1.5 grid h-[15px] w-[15px] place-items-center rounded-full border-2 border-accent bg-bg sm:h-[19px] sm:w-[19px]" aria-hidden="true">
-                  <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-                </span>
-                <div className="rounded-2xl border border-border bg-surface p-6 transition-colors duration-300 hover:border-accent/40">
-                  <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                    <h4 className="font-display text-xl font-medium tracking-tight">{job.role}</h4>
-                    <span className="font-display text-xs whitespace-nowrap text-muted">{job.period}</span>
-                  </div>
-                  <p className="mt-1 text-sm text-accent">{job.org}</p>
-                  <p className="mt-4 text-sm leading-relaxed text-muted">{job.summary}</p>
-                  <ul className="mt-4 space-y-2">
-                    {job.points.map((pt) => (
-                      <li key={pt} className="flex gap-2.5 text-sm leading-relaxed text-fg/85">
-                        <span className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-accent" aria-hidden="true" />
-                        {pt}
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="mt-5 flex flex-wrap gap-1.5 border-t border-border pt-4">
-                    {job.stack.map((s) => <Tag key={s}>{s}</Tag>)}
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </ol>
-        </div>
-
-        <Reveal className="mt-16">
-          <h3 className="font-display text-xs uppercase tracking-[0.18em] text-muted">Side hustles</h3>
-          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted">
-            Part-time and on-call work carried alongside full-time study. Unrelated to
-            software, but where the customer-facing habits came from.
-          </p>
-          <ul className={`mt-6 ${GRID} sm:grid-cols-2`}>
-            {otherExperience.map((job) => (
-              <li
-                key={`${job.org}-${job.role}`}
-                className="flex h-full flex-col rounded-2xl border border-border bg-surface p-5 transition-colors duration-300 hover:border-accent/40"
-              >
-                <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
-                  <h4 className="font-display text-base font-medium tracking-tight">{job.role}</h4>
-                  <span className="font-display text-xs whitespace-nowrap text-muted">{job.period}</span>
-                </div>
-                <p className="mt-1 text-sm text-accent">{job.org}</p>
-                <p className="mt-3 text-sm leading-relaxed text-muted">{job.summary}</p>
-                <ul className="mt-3 space-y-1.5">
-                  {job.points.map((pt) => (
-                    <li key={pt} className="flex gap-2.5 text-sm leading-relaxed text-fg/85">
-                      <span className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-accent" aria-hidden="true" />
-                      {pt}
-                    </li>
-                  ))}
-                </ul>
-              </li>
-            ))}
-          </ul>
-        </Reveal>
-      </Section>
-
       {/* Education: restored here after the About rewrite dropped it. A
           student portfolio has to state the degree and graduation date. */}
       <Section id="education" divider={false} className="!min-h-0 !py-0">
         <Reveal className="-mt-8 pb-4">
-          <h3 className="font-display text-xs uppercase tracking-[0.18em] text-muted">Education</h3>
+          <h3 className="font-display text-xs uppercase tracking-[0.18em] text-muted text-plate">Education</h3>
           <div className="mt-5 max-w-2xl rounded-2xl border border-border bg-surface/70 p-6 backdrop-blur-sm transition-colors duration-300 hover:border-accent/40">
             {education.map((e) => (
               <div key={e.degree}>
@@ -338,6 +257,87 @@ export default function Home() {
         )}
       </Section>
 
+      {/* ================= Experience ================= */}
+      <Section id="experience">
+        <Reveal>
+          <SectionHeading
+            eyebrow="Experience"
+            title="Where I have worked, and what I actually did."
+            lead="A year-long IT internship at eHealth Saskatchewan and university contract work, plus the side hustles that paid for the degree."
+          />
+        </Reveal>
+
+        {/* Clamped but left-aligned, so the timeline keeps a readable measure
+            without leaving the page's shared left baseline. */}
+        <div className="mt-14 max-w-4xl">
+          {/* Sits on the page's left baseline, like every other heading; the
+              rail below starts here too and the cards hang off it. */}
+          <h3 className="mb-8 font-display text-xs uppercase tracking-[0.18em] text-muted text-plate">
+            Internship &amp; university roles
+          </h3>
+          <ol className="relative">
+            <span className="absolute left-[7px] top-2 bottom-2 w-px bg-border sm:left-[9px]" aria-hidden="true" />
+            {experience.map((job, i) => (
+              <Reveal as="li" key={`${job.org}-${job.role}`} delay={i * 90} className="relative pl-9 pb-8 last:pb-0 sm:pl-12">
+                <span className="absolute left-0 top-1.5 grid h-[15px] w-[15px] place-items-center rounded-full border-2 border-accent bg-bg sm:h-[19px] sm:w-[19px]" aria-hidden="true">
+                  <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+                </span>
+                <div className="rounded-2xl border border-border bg-surface p-6 transition-colors duration-300 hover:border-accent/40">
+                  <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                    <h4 className="font-display text-xl font-medium tracking-tight">{job.role}</h4>
+                    <span className="font-display text-xs whitespace-nowrap text-muted">{job.period}</span>
+                  </div>
+                  <p className="mt-1 text-sm text-accent">{job.org}</p>
+                  <p className="mt-4 text-sm leading-relaxed text-muted">{job.summary}</p>
+                  <ul className="mt-4 space-y-2">
+                    {job.points.map((pt) => (
+                      <li key={pt} className="flex gap-2.5 text-sm leading-relaxed text-fg/85">
+                        <span className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-accent" aria-hidden="true" />
+                        {pt}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-5 flex flex-wrap gap-1.5 border-t border-border pt-4">
+                    {job.stack.map((s) => <Tag key={s}>{s}</Tag>)}
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </ol>
+        </div>
+
+        <Reveal className="mt-16">
+          <h3 className="font-display text-xs uppercase tracking-[0.18em] text-muted text-plate">Side hustles</h3>
+          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted text-plate">
+            Part-time and on-call work carried alongside full-time study. Unrelated to
+            software, but where the customer-facing habits came from.
+          </p>
+          <ul className={`mt-6 ${GRID} sm:grid-cols-2`}>
+            {otherExperience.map((job) => (
+              <li
+                key={`${job.org}-${job.role}`}
+                className="flex h-full flex-col rounded-2xl border border-border bg-surface p-5 transition-colors duration-300 hover:border-accent/40"
+              >
+                <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+                  <h4 className="font-display text-base font-medium tracking-tight">{job.role}</h4>
+                  <span className="font-display text-xs whitespace-nowrap text-muted">{job.period}</span>
+                </div>
+                <p className="mt-1 text-sm text-accent">{job.org}</p>
+                <p className="mt-3 text-sm leading-relaxed text-muted">{job.summary}</p>
+                <ul className="mt-3 space-y-1.5">
+                  {job.points.map((pt) => (
+                    <li key={pt} className="flex gap-2.5 text-sm leading-relaxed text-fg/85">
+                      <span className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-accent" aria-hidden="true" />
+                      {pt}
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ul>
+        </Reveal>
+      </Section>
+
       {/* ================= Contact ================= */}
       <Section id="contact">
         <Reveal>
@@ -352,7 +352,7 @@ export default function Home() {
           <Reveal delay={80}>
             <div className="flex h-full flex-col justify-between gap-10">
               <div>
-                <p className="max-w-md text-base leading-relaxed text-muted">
+                <p className="max-w-md text-base leading-relaxed text-muted text-plate">
                   Whether you have a role in mind, a project that needs a second
                   pair of hands, or just want to talk about something you are
                   building, my inbox is open.

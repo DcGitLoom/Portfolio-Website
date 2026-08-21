@@ -37,6 +37,11 @@
 
 html {
   scroll-behavior: smooth;
+  /* Mobile browsers paint the html element's own background during rubber-band
+     overscroll (the bounce past the top/bottom edge) and, on some Android
+     browsers, in the gap left by the collapsing address bar. Without this it
+     defaults to white, which flashes under the dark theme while scrolling. */
+  background: var(--bg);
 }
 
 body {
@@ -44,6 +49,18 @@ body {
   color: var(--fg);
   font-family: var(--font-archivo), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+}
+
+/* A soft dark halo behind loose prose that sits directly over the pulse-grid
+   canvas (no card, no bg-surface behind it). text-shadow inherits, so one
+   class on a wrapper covers every child instead of boxing the text in a
+   visible panel: each grid line fades out right at the glyph edge rather
+   than cutting across a thin font-weight stroke. Doubled shadows because a
+   browser renders one text-shadow at roughly half strength. */
+.text-plate {
+  text-shadow:
+    0 0 5px var(--bg), 0 0 5px var(--bg),
+    0 0 14px var(--bg), 0 0 14px var(--bg);
 }
 
 /* Keyboard focus stays visible everywhere — Swiss-style minimalism strips

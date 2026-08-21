@@ -8,8 +8,8 @@ import { ArrowUpRight, Close, Menu } from "./Icons";
 const sections = [
   { id: "home", label: "Home" },
   { id: "about", label: "About" },
-  { id: "experience", label: "Experience" },
   { id: "projects", label: "Projects" },
+  { id: "experience", label: "Experience" },
   { id: "contact", label: "Contact" },
 ];
 
@@ -108,7 +108,7 @@ export function Nav() {
           rel="noopener noreferrer"
           className="group hidden cursor-pointer items-center gap-2 rounded-full bg-accent px-4 py-2 text-sm font-medium text-on-accent transition-transform duration-200 hover:scale-[1.03] md:inline-flex"
         >
-          Résumé
+          Resume
           <ArrowUpRight
             className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
             aria-hidden="true"
@@ -155,7 +155,7 @@ export function Nav() {
               onClick={() => setOpen(false)}
               className="flex min-h-11 items-center justify-center gap-2 rounded-full bg-accent px-4 text-base font-medium text-on-accent"
             >
-              Résumé
+              Resume
               <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
             </a>
           </li>

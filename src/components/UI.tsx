@@ -44,7 +44,7 @@ export function SectionHeading({
   id?: string;
 }) {
   return (
-    <div className="max-w-3xl">
+    <div className="max-w-3xl text-plate">
       <div className="mb-5 flex items-center gap-3">
         <span className="h-px w-10 bg-accent" />
         <span className="font-display text-xs uppercase tracking-[0.22em] text-accent">
