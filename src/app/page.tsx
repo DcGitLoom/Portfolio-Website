@@ -146,10 +146,16 @@ export default function Home() {
                   height={720}
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                 />
-                {/* Fades the frame into the section rather than ending on a hard edge. */}
+                {/* Fades the frame into the section rather than ending on a hard
+                    edge, top and bottom: the photo's overcast sky is far lighter
+                    than the section behind it. */}
                 <div
                   className="pointer-events-none absolute inset-0"
-                  style={{ background: "linear-gradient(to top, rgba(10,15,13,0.85) 0%, transparent 45%)" }}
+                  style={{
+                    background:
+                      "linear-gradient(to top, rgba(10,15,13,0.88) 0%, transparent 42%), " +
+                      "linear-gradient(to bottom, rgba(10,15,13,0.55) 0%, transparent 30%)",
+                  }}
                   aria-hidden="true"
                 />
                 <span className="absolute bottom-4 left-4 font-display text-[0.65rem] uppercase tracking-[0.28em] text-accent">

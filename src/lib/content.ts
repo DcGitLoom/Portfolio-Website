@@ -17,8 +17,8 @@ export const profile = {
   github: "https://github.com/DcGitLoom",
   linkedin: "https://www.linkedin.com/in/dhruv-chaudhari-b999192a4",
   resume: "/dhruv-chaudhari-resume.pdf",
-  /** Swap for a real photo any time: drop the file in /public and point here. */
-  photo: "/avatar.webp",
+  /** Cropped 5:6 and graded toward the palette; see the About portrait frame. */
+  photo: "/dhruv-portrait.webp",
   about: {
     lead: "I am Dhruv Chaudhari, an aspiring developer.",
     body: "I like building things that people actually use, and I care about the parts that keep them standing: clean APIs, containers that come up first try, and tests that fail for the right reason.",
