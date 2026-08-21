@@ -149,9 +149,18 @@ export function PulseGrid() {
       target.x = e.clientX / window.innerWidth;
       target.y = 1 - e.clientY / window.innerHeight; // GL origin is bottom-left
     };
-    window.addEventListener("pointermove", onMove, { passive: true });
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // Touch devices have no cursor to glow around: a tap moves the target once,
+    // then it sits frozen until the next touch, so the grid read as static.
+    // In place of a cursor, the glow drifts on its own slow orbit instead of
+    // waiting on interaction that mostly never comes (nobody drags a finger
+    // over the background of a page they're reading).
+    const coarse = window.matchMedia("(hover: none)").matches;
+    if (!coarse) {
+      window.addEventListener("pointermove", onMove, { passive: true });
+    }
 
     // The hero keeps its own treatment, so the grid only fades up once the hero
     // has left the viewport. Opacity is driven here rather than by unmounting,
@@ -176,6 +185,11 @@ export function PulseGrid() {
 
     const frame = () => {
       if (!running) return;
+      if (coarse && !reduced) {
+        const t = (performance.now() - start) / 1000;
+        target.x = 0.5 + 0.3 * Math.sin(t * 0.17);
+        target.y = 0.45 + 0.26 * Math.cos(t * 0.13);
+      }
       eased.x += (target.x - eased.x) * 0.08;
       eased.y += (target.y - eased.y) * 0.08;
       gl.uniform2f(uMouse, eased.x, eased.y);

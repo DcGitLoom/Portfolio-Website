@@ -57,7 +57,7 @@ export function SectionHeading({
       >
         {title}
       </h2>
-      {lead && <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-muted">{lead}</p>}
+      {lead && <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-fg/85">{lead}</p>}
     </div>
   );
 }
@@ -207,4 +207,3 @@ export function CtaBand({
     </section>
   );
 }
-
