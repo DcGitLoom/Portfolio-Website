@@ -1,7 +1,9 @@
+import Image from "next/image";
 import { HeroVisual } from "@/components/HeroVisual";
 import { SCROLL_OFFSET } from "@/lib/scroll";
 import { Reveal } from "@/components/Reveal";
 import { CopyEmail } from "@/components/CopyEmail";
+import { ContactForm } from "@/components/ContactForm";
 import { ArrowUpRight, glyphMap } from "@/components/Icons";
 import { DisciplineCard, ProjectCard, Section, SectionHeading, Tag } from "@/components/UI";
 import {
@@ -9,20 +11,6 @@ import {
   projects, socials, stats, toolbelt,
 } from "@/lib/content";
 
-const values = [
-  {
-    title: "Reliability over cleverness",
-    body: "Software that works for real people has to keep working. I would rather ship something predictable than something impressive that falls over on the second try.",
-  },
-  {
-    title: "Test it before someone else does",
-    body: "Writing tests first changes what you build, not just what you verify. Unit, integration, and end-to-end each catch a different class of mistake, and load testing catches the ones that only appear under pressure.",
-  },
-  {
-    title: "Clean code and honest feedback",
-    body: "The best teams I have worked on said what was actually wrong with a pull request. Code review is where the standard gets set, so it is worth being direct.",
-  },
-];
 
 const heroActions = [
   { href: "#projects", glyph: "grid", label: "See my work" },
@@ -141,97 +129,73 @@ export default function Home() {
 
       {/* ================= About ================= */}
       <Section id="about">
-        <Reveal>
-          <SectionHeading
-            eyebrow="About me"
-            title="I build software that works for real people."
-            lead={profile.intro}
-          />
-        </Reveal>
-
-        <div className="mt-14 grid gap-10 md:gap-14 lg:grid-cols-[1.4fr_1fr]">
-          <Reveal>
-            <h3 className="font-display text-xs uppercase tracking-[0.18em] text-muted">How I got here</h3>
-            <div className="mt-6 space-y-5 text-[15px] leading-relaxed text-muted">
-              <p>
-                I am a Computer Science major at the University of Saskatchewan with a minor in
-                Mathematics. Between a year of IT support at eHealth Saskatchewan and a set of
-                full-stack projects, I have spent most of my degree learning to bridge the gap
-                between complex backend logic and an interface someone can actually use.
-              </p>
-              <p>
-                That work has ranged from independently architecting a Dockerised Q&amp;A platform
-                to collaborating on a thirteen-person Agile team replacing a legacy archaeological
-                database across five milestones. On that project I owned the RESTful CRUD endpoints,
-                the container setup, the CI/CD pipeline, and the test suite, from unit through
-                end-to-end, plus load and stress runs to confirm the system held under real
-                conditions.
-              </p>
-              <p>
-                The year at eHealth taught me a different lesson. Resolving high-volume technical
-                tickets means the person on the other end is already blocked, so documenting the fix
-                properly matters as much as finding it. Whichever side I am on, the focus is the
-                same: reliability and scale.
-              </p>
-            </div>
-
-            <div className="mt-12">
-              <h3 className="font-display text-xs uppercase tracking-[0.18em] text-muted">
-                Technologies I reach for
-              </h3>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {toolbelt.map((t) => <Tag key={t}>{t}</Tag>)}
+        <div className="grid items-center gap-12 lg:grid-cols-[auto_1fr] lg:gap-16">
+          {/* Portrait */}
+          <Reveal className="mx-auto w-full max-w-[260px] lg:mx-0 lg:max-w-[300px]">
+            <div className="group relative">
+              <div
+                className="pointer-events-none absolute -inset-4 rounded-[2rem] opacity-70 blur-2xl transition-opacity duration-500 group-hover:opacity-100"
+                style={{ background: "radial-gradient(60% 60% at 50% 40%, rgba(34,197,94,0.28), transparent 70%)" }}
+                aria-hidden="true"
+              />
+              <div className="relative overflow-hidden rounded-[1.75rem] border border-border bg-surface">
+                <Image
+                  src={profile.photo}
+                  alt={`Portrait of ${profile.name}`}
+                  width={600}
+                  height={720}
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                />
+                {/* Fades the frame into the section rather than ending on a hard edge. */}
+                <div
+                  className="pointer-events-none absolute inset-0"
+                  style={{ background: "linear-gradient(to top, rgba(10,15,13,0.85) 0%, transparent 45%)" }}
+                  aria-hidden="true"
+                />
+                <span className="absolute bottom-4 left-4 font-display text-[0.65rem] uppercase tracking-[0.28em] text-accent">
+                  {profile.location}
+                </span>
               </div>
             </div>
           </Reveal>
 
-          <div className="space-y-6">
-            <Reveal delay={80}>
-              <div className="rounded-2xl border border-border bg-surface p-6 transition-colors duration-300 hover:border-accent/40">
-                <h3 className="font-display text-xs uppercase tracking-[0.18em] text-muted">At a glance</h3>
-                <dl className="mt-5 space-y-4">
-                  {stats.map((s) => (
-                    <div key={s.label} className="flex items-baseline justify-between gap-4">
-                      <dt className="text-sm text-muted">{s.label}</dt>
-                      <dd className="font-display text-xl font-light text-accent">{s.value}</dd>
-                    </div>
-                  ))}
-                </dl>
-              </div>
-            </Reveal>
+          {/* Copy: short, first person, one accented pivot word. */}
+          <Reveal delay={100}>
+            <div className="mb-6 flex items-center gap-3">
+              <span className="h-px w-10 bg-accent" />
+              <span className="font-display text-xs uppercase tracking-[0.22em] text-accent">About me</span>
+            </div>
 
-            <Reveal delay={140}>
-              <div className="rounded-2xl border border-border bg-surface p-6 transition-colors duration-300 hover:border-accent/40">
-                <h3 className="font-display text-xs uppercase tracking-[0.18em] text-muted">Education</h3>
-                {education.map((e) => (
-                  <div key={e.degree} className="mt-5">
-                    <p className="font-display text-base font-medium">{e.degree}</p>
-                    <p className="mt-1 text-sm text-accent">{e.org}</p>
-                    <p className="mt-0.5 font-display text-xs text-muted">{e.period}</p>
-                    <p className="mt-3 text-sm leading-relaxed text-muted">{e.detail}</p>
-                  </div>
-                ))}
-              </div>
-            </Reveal>
-          </div>
-        </div>
+            <p className="font-display text-3xl leading-[1.25] font-light text-balance sm:text-4xl">
+              {profile.about.lead}
+            </p>
 
-        <Reveal className="mt-16">
-          <h3 className="font-display text-xs uppercase tracking-[0.18em] text-muted">How I work</h3>
-          <div className={`mt-6 ${GRID} md:grid-cols-3`}>
-            {values.map((v, i) => (
-              <Reveal key={v.title} delay={i * 80} className="h-full">
-                <div className="flex h-full flex-col justify-between rounded-2xl border border-border bg-surface p-6 transition-colors duration-300 hover:border-accent/40">
-                  <div>
-                    <span className="font-display text-sm text-accent">0{i + 1}</span>
-                    <h4 className="mt-3 font-display text-lg font-medium tracking-tight">{v.title}</h4>
-                  </div>
-                  <p className="mt-2.5 text-sm leading-relaxed text-muted">{v.body}</p>
+            <p className="mt-6 max-w-xl text-[15px] leading-relaxed text-muted">
+              {profile.about.body}
+            </p>
+
+            <p className="mt-8 font-display text-2xl font-medium tracking-tight text-accent sm:text-3xl">
+              {profile.about.curiosity}
+            </p>
+
+            <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-muted">
+              {profile.about.tail}
+            </p>
+
+            <div className="mt-10 flex flex-wrap gap-2">
+              {toolbelt.slice(0, 8).map((t) => <Tag key={t}>{t}</Tag>)}
+            </div>
+
+            <div className="mt-10 grid gap-x-10 gap-y-4 sm:grid-cols-2">
+              {stats.slice(0, 4).map((st) => (
+                <div key={st.label} className="flex items-baseline gap-3 border-b border-border/60 pb-3">
+                  <span className="font-display text-2xl font-light text-accent">{st.value}</span>
+                  <span className="text-sm text-muted">{st.label}</span>
                 </div>
-              </Reveal>
-            ))}
-          </div>
-        </Reveal>
+              ))}
+            </div>
+          </Reveal>
+        </div>
       </Section>
 
       {/* ================= Experience ================= */}
@@ -315,6 +279,26 @@ export default function Home() {
         </Reveal>
       </Section>
 
+      {/* Education: restored here after the About rewrite dropped it. A
+          student portfolio has to state the degree and graduation date. */}
+      <Section id="education" divider={false} className="!min-h-0 !py-0">
+        <Reveal className="-mt-8 pb-4">
+          <h3 className="font-display text-xs uppercase tracking-[0.18em] text-muted">Education</h3>
+          <div className="mt-5 max-w-2xl rounded-2xl border border-border bg-surface/70 p-6 backdrop-blur-sm transition-colors duration-300 hover:border-accent/40">
+            {education.map((e) => (
+              <div key={e.degree}>
+                <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                  <h4 className="font-display text-lg font-medium tracking-tight">{e.degree}</h4>
+                  <span className="font-display text-xs text-muted">{e.period}</span>
+                </div>
+                <p className="mt-1 text-sm text-accent">{e.org}</p>
+                <p className="mt-3 text-sm leading-relaxed text-muted">{e.detail}</p>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+      </Section>
+
       {/* ================= Projects ================= */}
       <Section id="projects">
         <Reveal>
@@ -353,79 +337,85 @@ export default function Home() {
         <Reveal>
           <SectionHeading
             eyebrow="Contact"
-            title="Let's build something."
-            lead="I read everything that arrives and reply to most of it within a day or two. Email is the surest route; the links below all reach me too."
+            title="Let's connect."
+            lead="I read everything that arrives and reply to most of it within a day or two. Use the form, or reach me directly on any of the links below."
           />
         </Reveal>
 
-        <Reveal delay={80} className="mt-14">
-          <div className="relative overflow-hidden rounded-3xl border border-border bg-surface p-8 text-center sm:p-14">
-            <div
-              className="pointer-events-none absolute inset-x-0 top-0 h-52 opacity-70"
-              style={{ background: "radial-gradient(60% 100% at 50% 0%, rgba(34,197,94,0.16), transparent 70%)" }}
-              aria-hidden="true"
-            />
-            <p className="relative font-display text-xs uppercase tracking-[0.2em] text-muted">Email me at</p>
-            <a
-              href={`mailto:${profile.email}`}
-              className="relative mt-4 inline-block font-display text-xl leading-tight font-light break-all transition-colors duration-200 hover:text-accent sm:text-3xl"
-            >
-              {profile.email}
-            </a>
-            <div className="relative mt-8 flex flex-wrap justify-center gap-3">
-              <a
-                href={`mailto:${profile.email}`}
-                className="inline-flex min-h-11 cursor-pointer items-center rounded-full bg-accent px-6 py-2.5 text-sm font-medium text-on-accent transition-transform duration-200 hover:scale-[1.03]"
-              >
-                Open mail app
-              </a>
-              <CopyEmail email={profile.email} />
-            </div>
-          </div>
-        </Reveal>
+        <div className="mt-14 grid gap-10 lg:grid-cols-[1fr_1fr] lg:gap-16">
+          <Reveal delay={80}>
+            <div className="flex h-full flex-col justify-between gap-10">
+              <div>
+                <p className="max-w-md text-base leading-relaxed text-muted">
+                  Whether you have a role in mind, a project that needs a second
+                  pair of hands, or just want to talk about something you are
+                  building, my inbox is open.
+                </p>
 
-        <Reveal delay={160} className="mt-16">
-          <h3 className="text-center font-display text-xs uppercase tracking-[0.2em] text-muted">Find me elsewhere</h3>
-          <ul className="mt-6 flex flex-wrap justify-center gap-3">
-            {socials.map((s) => {
-              const Glyph = glyphMap[s.icon];
-              const external = s.href.startsWith("http");
-              return (
-                <li key={s.label}>
+                <ul className="mt-8 flex flex-wrap gap-3">
+                  {socials.map((s) => {
+                    const Glyph = glyphMap[s.icon];
+                    const external = s.href.startsWith("http");
+                    return (
+                      <li key={s.label}>
+                        <a
+                          href={s.href}
+                          aria-label={s.label}
+                          title={s.label}
+                          target={external ? "_blank" : undefined}
+                          rel={external ? "noreferrer noopener" : undefined}
+                          className="grid h-12 w-12 cursor-pointer place-items-center rounded-full border border-border bg-surface text-fg transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/50 hover:bg-accent hover:text-on-accent"
+                        >
+                          <Glyph className="h-[18px] w-[18px]" aria-hidden="true" />
+                        </a>
+                      </li>
+                    );
+                  })}
+                </ul>
+
+                <div className="mt-8 flex flex-wrap items-center gap-3">
                   <a
-                    href={s.href}
-                    target={external ? "_blank" : undefined}
-                    rel={external ? "noreferrer noopener" : undefined}
-                    className="group flex min-h-11 cursor-pointer items-center gap-2.5 rounded-full border border-border bg-surface py-2.5 pl-3 pr-5 text-sm text-fg transition-all duration-200 hover:border-accent/50 hover:-translate-y-0.5"
+                    href={`mailto:${profile.email}`}
+                    className="font-display text-sm break-all transition-colors duration-200 hover:text-accent sm:text-base"
                   >
-                    <span className="grid h-7 w-7 place-items-center rounded-full bg-surface-2 text-accent transition-colors duration-200 group-hover:bg-accent group-hover:text-on-accent">
-                      <Glyph className="h-4 w-4" aria-hidden="true" />
-                    </span>
-                    {s.label}
+                    {profile.email}
                   </a>
-                </li>
-              );
-            })}
-          </ul>
-        </Reveal>
+                  <CopyEmail email={profile.email} />
+                </div>
+              </div>
 
-        <Reveal delay={240} className="mt-16">
-          <div className={`${GRID} sm:grid-cols-2`}>
-            <div className="flex h-full flex-col rounded-2xl border border-border bg-surface p-6 transition-colors duration-300 hover:border-accent/40">
-              <h3 className="font-display text-sm font-medium">What I am looking for</h3>
-              <p className="mt-2.5 text-sm leading-relaxed text-muted">
-                New-grad and internship roles in full-stack or backend development, in Saskatchewan
-                or remote. I am equally happy writing the API or the tests around it.
-              </p>
+              <dl className={`${GRID} sm:grid-cols-2`}>
+                <div className="flex h-full flex-col rounded-2xl border border-border bg-surface p-6 transition-colors duration-300 hover:border-accent/40">
+                  <dt className="font-display text-sm font-medium">What I am looking for</dt>
+                  <dd className="mt-2.5 text-sm leading-relaxed text-muted">
+                    New-grad and internship roles in full-stack or backend development, in
+                    Saskatchewan or remote. I am equally happy writing the API or the tests
+                    around it.
+                  </dd>
+                </div>
+                <div className="flex h-full flex-col rounded-2xl border border-border bg-surface p-6 transition-colors duration-300 hover:border-accent/40">
+                  <dt className="font-display text-sm font-medium">Based in</dt>
+                  <dd className="mt-2.5 text-sm leading-relaxed text-muted">
+                    {profile.location}, Canada. Comfortable working remotely across time zones.
+                  </dd>
+                </div>
+              </dl>
             </div>
-            <div className="flex h-full flex-col rounded-2xl border border-border bg-surface p-6 transition-colors duration-300 hover:border-accent/40">
-              <h3 className="font-display text-sm font-medium">Based in</h3>
-              <p className="mt-2.5 text-sm leading-relaxed text-muted">
-                {profile.location}, Canada. Comfortable working remotely across time zones.
-              </p>
+          </Reveal>
+
+          <Reveal delay={160}>
+            <div className="relative h-full overflow-hidden rounded-3xl border border-border bg-surface p-6 sm:p-8">
+              <div
+                className="pointer-events-none absolute inset-x-0 top-0 h-40 opacity-70"
+                style={{ background: "radial-gradient(70% 100% at 50% 0%, rgba(34,197,94,0.14), transparent 72%)" }}
+                aria-hidden="true"
+              />
+              <div className="relative">
+                <ContactForm email={profile.email} />
+              </div>
             </div>
-          </div>
-        </Reveal>
+          </Reveal>
+        </div>
       </Section>
     </>
   );

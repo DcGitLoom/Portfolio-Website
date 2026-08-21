@@ -17,6 +17,14 @@ export const profile = {
   github: "https://github.com/DcGitLoom",
   linkedin: "https://www.linkedin.com/in/dhruv-chaudhari-b999192a4",
   resume: "/dhruv-chaudhari-resume.pdf",
+  /** Swap for a real photo any time: drop the file in /public and point here. */
+  photo: "/avatar.webp",
+  about: {
+    lead: "I am Dhruv Chaudhari, an aspiring developer.",
+    body: "I like building things that people actually use, and I care about the parts that keep them standing: clean APIs, containers that come up first try, and tests that fail for the right reason.",
+    curiosity: "Curiosity.",
+    tail: "I enjoy breaking problems down, trying the bolder approach, and pushing past the version that merely works. Whether it is a new stack, a service under load, or a test suite that finally catches the bug first.",
+  },
   available: true,
   availableLabel: "Open to new-grad & internship roles",
 } as const;
@@ -196,6 +204,7 @@ export const projects = [
       "Search and filter practitioners, then book directly",
       "Built on the MERN stack following Agile web development practice",
     ],
+    href: "https://git.cs.usask.ca/gmj287/370-project",
     year: "2024",
     featured: true,
   },
