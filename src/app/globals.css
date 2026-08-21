@@ -37,6 +37,11 @@
 
 html {
   scroll-behavior: smooth;
+  /* Mobile browsers paint the html element's own background during rubber-band
+     overscroll (the bounce past the top/bottom edge) and, on some Android
+     browsers, in the gap left by the collapsing address bar. Without this it
+     defaults to white, which flashes under the dark theme while scrolling. */
+  background: var(--bg);
 }
 
 body {

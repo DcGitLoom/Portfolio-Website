@@ -204,6 +204,59 @@ export default function Home() {
         </div>
       </Section>
 
+      {/* Education: restored here after the About rewrite dropped it. A
+          student portfolio has to state the degree and graduation date. */}
+      <Section id="education" divider={false} className="!min-h-0 !py-0">
+        <Reveal className="-mt-8 pb-4">
+          <h3 className="font-display text-xs uppercase tracking-[0.18em] text-muted text-plate">Education</h3>
+          <div className="mt-5 max-w-2xl rounded-2xl border border-border bg-surface/70 p-6 backdrop-blur-sm transition-colors duration-300 hover:border-accent/40">
+            {education.map((e) => (
+              <div key={e.degree}>
+                <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                  <h4 className="font-display text-lg font-medium tracking-tight">{e.degree}</h4>
+                  <span className="font-display text-xs text-muted">{e.period}</span>
+                </div>
+                <p className="mt-1 text-sm text-accent">{e.org}</p>
+                <p className="mt-3 text-sm leading-relaxed text-muted">{e.detail}</p>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+      </Section>
+
+      {/* ================= Projects ================= */}
+      <Section id="projects">
+        <Reveal>
+          <SectionHeading
+            eyebrow="Selected work"
+            title="Full-stack applications I have built."
+            lead="Three projects: one solo, two on Agile teams. Each description says what the system does and which parts I was responsible for."
+          />
+        </Reveal>
+        <div className={`mt-12 ${GRID} md:grid-cols-2 lg:grid-cols-3`}>
+          {featured.map((p, i) => (
+            <Reveal key={p.name} delay={i * 80} className="h-full">
+              <ProjectCard {...p} />
+            </Reveal>
+          ))}
+        </div>
+
+        {others.length > 0 && (
+          <>
+            <Reveal className="mt-16">
+              <SectionHeading eyebrow="Also built" title="Other projects" />
+            </Reveal>
+            <div className={`mt-12 ${GRID} md:grid-cols-2 lg:grid-cols-3`}>
+              {others.map((p, i) => (
+                <Reveal key={p.name} delay={i * 80} className="h-full">
+                  <ProjectCard {...p} />
+                </Reveal>
+              ))}
+            </div>
+          </>
+        )}
+      </Section>
+
       {/* ================= Experience ================= */}
       <Section id="experience">
         <Reveal>
@@ -283,59 +336,6 @@ export default function Home() {
             ))}
           </ul>
         </Reveal>
-      </Section>
-
-      {/* Education: restored here after the About rewrite dropped it. A
-          student portfolio has to state the degree and graduation date. */}
-      <Section id="education" divider={false} className="!min-h-0 !py-0">
-        <Reveal className="-mt-8 pb-4">
-          <h3 className="font-display text-xs uppercase tracking-[0.18em] text-muted text-plate">Education</h3>
-          <div className="mt-5 max-w-2xl rounded-2xl border border-border bg-surface/70 p-6 backdrop-blur-sm transition-colors duration-300 hover:border-accent/40">
-            {education.map((e) => (
-              <div key={e.degree}>
-                <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                  <h4 className="font-display text-lg font-medium tracking-tight">{e.degree}</h4>
-                  <span className="font-display text-xs text-muted">{e.period}</span>
-                </div>
-                <p className="mt-1 text-sm text-accent">{e.org}</p>
-                <p className="mt-3 text-sm leading-relaxed text-muted">{e.detail}</p>
-              </div>
-            ))}
-          </div>
-        </Reveal>
-      </Section>
-
-      {/* ================= Projects ================= */}
-      <Section id="projects">
-        <Reveal>
-          <SectionHeading
-            eyebrow="Selected work"
-            title="Full-stack applications I have built."
-            lead="Three projects: one solo, two on Agile teams. Each description says what the system does and which parts I was responsible for."
-          />
-        </Reveal>
-        <div className={`mt-12 ${GRID} md:grid-cols-2 lg:grid-cols-3`}>
-          {featured.map((p, i) => (
-            <Reveal key={p.name} delay={i * 80} className="h-full">
-              <ProjectCard {...p} />
-            </Reveal>
-          ))}
-        </div>
-
-        {others.length > 0 && (
-          <>
-            <Reveal className="mt-16">
-              <SectionHeading eyebrow="Also built" title="Other projects" />
-            </Reveal>
-            <div className={`mt-12 ${GRID} md:grid-cols-2 lg:grid-cols-3`}>
-              {others.map((p, i) => (
-                <Reveal key={p.name} delay={i * 80} className="h-full">
-                  <ProjectCard {...p} />
-                </Reveal>
-              ))}
-            </div>
-          </>
-        )}
       </Section>
 
       {/* ================= Contact ================= */}
