@@ -63,11 +63,16 @@ void main() {
   m.x *= u_resolution.x / u_resolution.y;
   float glow = 1.0 - smoothstep(0.0, 0.3, distance(uv, m));
 
-  float intensity = lines * (pulse * 0.32 + glow * 0.5);
+  // Toned down from the first pass: at full brightness the lines cut across
+  // body text wherever a section has no opaque card behind it, especially
+  // where the font is thin (font-light headings, muted prose). The grid
+  // still reads as a moving pattern, just as a texture behind content
+  // instead of a layer competing with it.
+  float intensity = lines * (pulse * 0.20 + glow * 0.35);
   vec3 color = BG + LINE * intensity;
 
   // Soft vignette so the grid never competes with text at the edges.
-  float vig = 1.0 - 0.45 * length(v_texCoord - 0.5);
+  float vig = 1.0 - 0.52 * length(v_texCoord - 0.5);
   gl_FragColor = vec4(color * vig, 1.0);
 }`;
 

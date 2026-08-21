@@ -166,7 +166,7 @@ export default function Home() {
           </Reveal>
 
           {/* Copy: short, first person, one accented pivot word. */}
-          <Reveal delay={100}>
+          <Reveal delay={100} className="text-plate">
             <div className="mb-6 flex items-center gap-3">
               <span className="h-px w-10 bg-accent" />
               <span className="font-display text-xs uppercase tracking-[0.22em] text-accent">About me</span>
@@ -219,7 +219,7 @@ export default function Home() {
         <div className="mt-14 max-w-4xl">
           {/* Sits on the page's left baseline, like every other heading; the
               rail below starts here too and the cards hang off it. */}
-          <h3 className="mb-8 font-display text-xs uppercase tracking-[0.18em] text-muted">
+          <h3 className="mb-8 font-display text-xs uppercase tracking-[0.18em] text-muted text-plate">
             Internship &amp; university roles
           </h3>
           <ol className="relative">
@@ -254,8 +254,8 @@ export default function Home() {
         </div>
 
         <Reveal className="mt-16">
-          <h3 className="font-display text-xs uppercase tracking-[0.18em] text-muted">Side hustles</h3>
-          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted">
+          <h3 className="font-display text-xs uppercase tracking-[0.18em] text-muted text-plate">Side hustles</h3>
+          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted text-plate">
             Part-time and on-call work carried alongside full-time study. Unrelated to
             software, but where the customer-facing habits came from.
           </p>
@@ -289,7 +289,7 @@ export default function Home() {
           student portfolio has to state the degree and graduation date. */}
       <Section id="education" divider={false} className="!min-h-0 !py-0">
         <Reveal className="-mt-8 pb-4">
-          <h3 className="font-display text-xs uppercase tracking-[0.18em] text-muted">Education</h3>
+          <h3 className="font-display text-xs uppercase tracking-[0.18em] text-muted text-plate">Education</h3>
           <div className="mt-5 max-w-2xl rounded-2xl border border-border bg-surface/70 p-6 backdrop-blur-sm transition-colors duration-300 hover:border-accent/40">
             {education.map((e) => (
               <div key={e.degree}>
@@ -352,7 +352,7 @@ export default function Home() {
           <Reveal delay={80}>
             <div className="flex h-full flex-col justify-between gap-10">
               <div>
-                <p className="max-w-md text-base leading-relaxed text-muted">
+                <p className="max-w-md text-base leading-relaxed text-muted text-plate">
                   Whether you have a role in mind, a project that needs a second
                   pair of hands, or just want to talk about something you are
                   building, my inbox is open.
