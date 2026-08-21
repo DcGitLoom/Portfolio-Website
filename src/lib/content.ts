@@ -214,5 +214,5 @@ export const socials = [
   { label: "Email", href: `mailto:${profile.email}`, icon: "mail" as const },
   { label: "GitHub", href: profile.github, icon: "github" as const },
   { label: "LinkedIn", href: profile.linkedin, icon: "linkedin" as const },
-  { label: "Résumé", href: profile.resume, icon: "doc" as const },
+  { label: "Resume", href: profile.resume, icon: "doc" as const },
 ];
