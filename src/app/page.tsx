@@ -176,7 +176,7 @@ export default function Home() {
               {profile.about.lead}
             </p>
 
-            <p className="mt-6 max-w-xl text-[15px] leading-relaxed text-muted">
+            <p className="mt-6 max-w-xl text-[15px] leading-relaxed text-fg/85">
               {profile.about.body}
             </p>
 
@@ -184,7 +184,7 @@ export default function Home() {
               {profile.about.curiosity}
             </p>
 
-            <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-muted">
+            <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-fg/85">
               {profile.about.tail}
             </p>
 
@@ -272,7 +272,7 @@ export default function Home() {
         <div className="mt-14 max-w-4xl">
           {/* Sits on the page's left baseline, like every other heading; the
               rail below starts here too and the cards hang off it. */}
-          <h3 className="mb-8 font-display text-xs uppercase tracking-[0.18em] text-muted text-plate">
+          <h3 className="mb-8 font-display text-xs uppercase tracking-[0.18em] text-fg/85 text-plate">
             Internship &amp; university roles
           </h3>
           <ol className="relative">
@@ -307,8 +307,8 @@ export default function Home() {
         </div>
 
         <Reveal className="mt-16">
-          <h3 className="font-display text-xs uppercase tracking-[0.18em] text-muted text-plate">Side hustles</h3>
-          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted text-plate">
+          <h3 className="font-display text-xs uppercase tracking-[0.18em] text-fg/85 text-plate">Side hustles</h3>
+          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-fg/85 text-plate">
             Part-time and on-call work carried alongside full-time study. Unrelated to
             software, but where the customer-facing habits came from.
           </p>
@@ -344,7 +344,7 @@ export default function Home() {
           <SectionHeading
             eyebrow="Contact"
             title="Let's connect."
-            lead="I read everything that arrives and reply to most of it within a day or two. Use the form, or reach me directly on any of the links below."
+            lead="Nothing here goes through a queue. Whatever you send lands directly with me, and I reply myself, usually within a day or two."
           />
         </Reveal>
 
@@ -370,9 +370,9 @@ export default function Home() {
                           title={s.label}
                           target={external ? "_blank" : undefined}
                           rel={external ? "noreferrer noopener" : undefined}
-                          className="grid h-12 w-12 cursor-pointer place-items-center rounded-full border border-border bg-surface text-fg transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/50 hover:bg-accent hover:text-on-accent"
+                          className="grid h-14 w-14 cursor-pointer place-items-center rounded-full border border-border bg-surface text-fg transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/50 hover:bg-accent hover:text-on-accent"
                         >
-                          <Glyph className="h-[18px] w-[18px]" aria-hidden="true" />
+                          <Glyph className="h-5 w-5" aria-hidden="true" />
                         </a>
                       </li>
                     );
@@ -394,8 +394,8 @@ export default function Home() {
                 <div className="flex h-full flex-col rounded-2xl border border-border bg-surface p-6 transition-colors duration-300 hover:border-accent/40">
                   <dt className="font-display text-sm font-medium">What I am looking for</dt>
                   <dd className="mt-2.5 text-sm leading-relaxed text-muted">
-                    New-grad and internship roles in full-stack or backend development, in
-                    Saskatchewan or remote. I am equally happy writing the API or the tests
+                    New-grad and internship roles in full-stack or backend development,
+                    anywhere in Canada. I am equally happy writing the API or the tests
                     around it.
                   </dd>
                 </div>
