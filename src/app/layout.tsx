@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Archivo, Space_Grotesk, Syne } from "next/font/google";
 import { Nav } from "@/components/Nav";
+import { PulseGrid } from "@/components/PulseGrid";
 import { Footer } from "@/components/Footer";
 import { profile } from "@/lib/content";
 import "./globals.css";
@@ -54,8 +55,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           Skip to content
         </a>
+        <PulseGrid />
         <Nav />
-        <main id="main" className="flex-1">{children}</main>
+        <main id="main" className="relative z-10 flex-1">{children}</main>
         <Footer />
       </body>
     </html>
