@@ -344,7 +344,7 @@ export default function Home() {
           <SectionHeading
             eyebrow="What's next"
             title="Not finished yet, on purpose."
-            lead="One I'm actively building toward a certification, one still at the pitch stage. Neither belongs next to shipped work, so they get their own section instead of padding the project count."
+            lead="One I'm actively building toward a certification, one still at the pitch stage. Both are what I'm actually spending time on right now."
           />
         </Reveal>
         <div className={`mt-12 ${GRID} sm:grid-cols-2`}>
