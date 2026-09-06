@@ -72,6 +72,13 @@ export const disciplines = [
     tags: ["Support", "Ticketing"],
     glyph: "spark" as const,
   },
+  {
+    title: "Networking & Infrastructure",
+    blurb: "Currently building an enterprise network from a two-switch pair up through VLANs, OSPF routing, firewalls, and VoIP, working toward the CCNA.",
+    tags: ["VLANs & OSPF", "pfSense", "CCNA"],
+    glyph: "grid" as const,
+    href: "#whats-next",
+  },
 ];
 
 export const stats = [
