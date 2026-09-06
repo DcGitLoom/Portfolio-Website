@@ -170,7 +170,7 @@ export const education = [
 export const projects = [
   {
     name: "PCubed",
-    image: "/pcubed.webp",
+    images: ["/pcubed-1.webp", "/pcubed-2.webp", "/pcubed-3.webp", "/pcubed-4.webp"],
     tagline: "A full-stack replacement for a legacy archaeological database, delivered by a 13-person Agile team.",
     stack: ["React", "Node.js", "Express", "MySQL", "Docker", "Vitest"],
     highlights: [
@@ -185,7 +185,10 @@ export const projects = [
   },
   {
     name: "Discussion Board",
-    image: "/discussion-board.webp",
+    images: [
+      "/discussion-board-1.webp", "/discussion-board-2.webp",
+      "/discussion-board-3.webp", "/discussion-board-4.webp",
+    ],
     tagline: "A Dockerised Q&A platform where developers ask programming questions inside topic-based channels.",
     stack: ["React", "Node.js", "Express", "MySQL", "Docker"],
     highlights: [
@@ -212,7 +215,7 @@ export const projects = [
   },
   {
     name: "Interactive DSA Lab",
-    image: "/dsalab.webp",
+    images: ["/dsalab-1.webp", "/dsalab-2.webp", "/dsalab-3.webp", "/dsalab-4.webp"],
     tagline: "Data structures and algorithms implemented from scratch, then animated, tested, and benchmarked against the standard library.",
     stack: ["Python", "Streamlit", "pytest"],
     highlights: [
