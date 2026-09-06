@@ -5,9 +5,9 @@ import { Reveal } from "@/components/Reveal";
 import { CopyEmail } from "@/components/CopyEmail";
 import { ContactForm } from "@/components/ContactForm";
 import { ArrowUpRight, glyphMap } from "@/components/Icons";
-import { DisciplineCard, ProjectCard, Section, SectionHeading, Tag } from "@/components/UI";
+import { DisciplineCard, IdeaCard, ProjectCard, Section, SectionHeading, Tag } from "@/components/UI";
 import {
-  disciplines, education, experience, otherExperience, profile,
+  disciplines, education, experience, ideas, otherExperience, profile,
   projects, socials, stats, toolbelt,
 } from "@/lib/content";
 
@@ -336,6 +336,24 @@ export default function Home() {
             ))}
           </ul>
         </Reveal>
+      </Section>
+
+      {/* ================= What's next ================= */}
+      <Section id="whats-next">
+        <Reveal>
+          <SectionHeading
+            eyebrow="What's next"
+            title="Not finished yet, on purpose."
+            lead="One I'm actively building toward a certification, one still at the pitch stage. Neither belongs next to shipped work, so they get their own section instead of padding the project count."
+          />
+        </Reveal>
+        <div className={`mt-12 ${GRID} sm:grid-cols-2`}>
+          {ideas.map((idea, i) => (
+            <Reveal key={idea.name} delay={i * 80} className="h-full">
+              <IdeaCard {...idea} />
+            </Reveal>
+          ))}
+        </div>
       </Section>
 
       {/* ================= Contact ================= */}

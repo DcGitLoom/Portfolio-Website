@@ -170,6 +170,7 @@ export const education = [
 export const projects = [
   {
     name: "PCubed",
+    image: "/pcubed.webp",
     tagline: "A full-stack replacement for a legacy archaeological database, delivered by a 13-person Agile team.",
     stack: ["React", "Node.js", "Express", "MySQL", "Docker", "Vitest"],
     highlights: [
@@ -184,6 +185,7 @@ export const projects = [
   },
   {
     name: "Discussion Board",
+    image: "/discussion-board.webp",
     tagline: "A Dockerised Q&A platform where developers ask programming questions inside topic-based channels.",
     stack: ["React", "Node.js", "Express", "MySQL", "Docker"],
     highlights: [
@@ -207,6 +209,48 @@ export const projects = [
     href: "https://git.cs.usask.ca/gmj287/370-project",
     year: "2024",
     featured: true,
+  },
+  {
+    name: "Interactive DSA Lab",
+    image: "/dsalab.webp",
+    tagline: "Data structures and algorithms implemented from scratch, then animated, tested, and benchmarked against the standard library.",
+    stack: ["Python", "Streamlit", "pytest"],
+    highlights: [
+      "Every structure built by hand: raw ctypes-backed arrays, real linked-list nodes, hash tables with their own probing",
+      "1,275 tests aimed at the awkward cases, all five red-black rules re-checked after every operation in a 2,000-op run",
+      "A benchmark harness that fits measured timings to complexity curves instead of asserting them",
+      "A counterexample finder that searches for, and finds, the classic case where greedy beats correct",
+    ],
+    href: "https://github.com/DcGitLoom/Interactive-DSA-lab",
+    year: "2026",
+    featured: true,
+  },
+];
+
+/**
+ * Work that is not a finished project yet: something under active build, and
+ * something still at the pitch stage. Kept separate from `projects` so the
+ * portfolio's proven work doesn't get diluted with in-progress or concept-only
+ * entries.
+ */
+export const ideas = [
+  {
+    name: "Enterprise Network Lab",
+    status: "In progress",
+    tagline:
+      "An eight-week, self-directed lab rebuilding an enterprise network from a two-PC switched pair up through VLANs, OSPF, firewalls, VoIP, and monitoring, working toward the CCNA.",
+    stack: ["Packet Tracer", "VLANs & OSPF", "pfSense", "FreePBX", "Ansible"],
+    href: "https://github.com/DcGitLoom/enterprise-network-lab",
+    linkLabel: "View repository",
+  },
+  {
+    name: "EcoFit",
+    status: "Concept",
+    tagline:
+      "A coin-sized air-quality sensor that clips onto a fitness band and fuses AQI with heart rate and strain, so a wildfire-smoke spike shows up next to your workout instead of in a separate app.",
+    stack: ["Hardware", "nRF52832", "BLE 5.0", "Product design"],
+    href: "/ecofit-pitch.pdf",
+    linkLabel: "View pitch deck",
   },
 ];
 

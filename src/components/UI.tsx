@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { SCROLL_OFFSET } from "@/lib/scroll";
 import type { ReactNode } from "react";
@@ -112,7 +113,7 @@ export function DisciplineCard({
 }
 
 export function ProjectCard({
-  name, tagline, stack, year, highlights, href,
+  name, tagline, stack, year, highlights, href, image,
 }: {
   name: string;
   tagline: string;
@@ -122,9 +123,23 @@ export function ProjectCard({
   /** Selects which projects the home page shows; not rendered. */
   featured?: boolean;
   href?: string;
+  /** Optional screenshot. Cards without one (a source the environment
+   *  couldn't reach to run) fall back to the plain text layout. */
+  image?: string;
 }) {
   return (
     <article className="group relative flex h-full flex-col rounded-2xl border border-border bg-surface p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40">
+      {image && (
+        <div className="relative -mx-6 -mt-6 mb-5 aspect-[16/10] overflow-hidden rounded-t-2xl border-b border-border">
+          <Image
+            src={image}
+            alt={`Screenshot of ${name}`}
+            fill
+            sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+            className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+          />
+        </div>
+      )}
       <div className="flex items-start justify-between gap-4">
         <h3 className="font-display text-xl font-medium tracking-tight">{name}</h3>
         <span className="shrink-0 font-display text-xs text-muted">{year}</span>
@@ -157,6 +172,50 @@ export function ProjectCard({
           <span className="sr-only">for {name} (opens in a new tab)</span>
         </a>
       )}
+    </article>
+  );
+}
+
+/**
+ * Card for `ideas`: work that isn't a finished project yet, so it gets a
+ * status pill instead of the year/source-link pattern ProjectCard uses.
+ */
+export function IdeaCard({
+  name, status, tagline, stack, href, linkLabel,
+}: {
+  name: string;
+  status: string;
+  tagline: string;
+  stack: readonly string[];
+  href: string;
+  linkLabel: string;
+}) {
+  const external = href.startsWith("http");
+  return (
+    <article className="flex h-full flex-col rounded-2xl border border-border bg-surface p-6 transition-colors duration-300 hover:border-accent/40">
+      <div className="flex items-start justify-between gap-4">
+        <h3 className="font-display text-xl font-medium tracking-tight">{name}</h3>
+        <span className="shrink-0 rounded-full border border-accent/30 bg-accent/10 px-2.5 py-1 font-display text-[11px] tracking-wide text-accent">
+          {status}
+        </span>
+      </div>
+
+      <p className="mt-2.5 flex-1 text-sm leading-relaxed text-muted">{tagline}</p>
+
+      <div className="mt-5 flex flex-wrap items-center gap-1.5 border-t border-border pt-4">
+        {stack.map((s) => <Tag key={s}>{s}</Tag>)}
+      </div>
+
+      <a
+        href={href}
+        target={external ? "_blank" : undefined}
+        rel={external ? "noreferrer noopener" : undefined}
+        className="mt-4 inline-flex min-h-11 cursor-pointer items-center gap-1.5 text-sm text-muted transition-colors duration-200 hover:text-accent"
+      >
+        {linkLabel}
+        <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+        <span className="sr-only">for {name} (opens in a new tab)</span>
+      </a>
     </article>
   );
 }
