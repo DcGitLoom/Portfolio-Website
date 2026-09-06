@@ -120,6 +120,17 @@ export const experience = [
 /** Side hustles: part-time work held alongside full-time study. */
 export const otherExperience = [
   {
+    role: "Customer Service Representative",
+    org: "Walmart",
+    period: "May 2026 – Present",
+    summary: "Front-line customer service and checkout support in a high-volume retail store.",
+    points: [
+      "Resolves customer concerns and product questions on the sales floor and at checkout.",
+      "Processes transactions, returns, and exchanges accurately under time pressure.",
+      "Coordinates with teammates to keep lines moving through peak hours.",
+    ],
+  },
+  {
     role: "Server",
     org: "Olive Garden",
     period: "Sep 2025 – Mar 2026",
