@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import { ProjectGallery } from "./Lightbox";
 import { SCROLL_OFFSET } from "@/lib/scroll";
 import type { ReactNode } from "react";
 import { ArrowRight, ArrowUpRight, glyphMap, type GlyphName } from "./Icons";
@@ -113,7 +113,7 @@ export function DisciplineCard({
 }
 
 export function ProjectCard({
-  name, tagline, stack, year, highlights, href, image,
+  name, tagline, stack, year, highlights, href, images,
 }: {
   name: string;
   tagline: string;
@@ -123,23 +123,13 @@ export function ProjectCard({
   /** Selects which projects the home page shows; not rendered. */
   featured?: boolean;
   href?: string;
-  /** Optional screenshot. Cards without one (a source the environment
-   *  couldn't reach to run) fall back to the plain text layout. */
-  image?: string;
+  /** Screenshots of different parts of the app. Cards without any (a source
+   *  the environment couldn't reach to run) fall back to the plain text
+   *  layout. Click one to open the full-screen viewer. */
+  images?: readonly string[];
 }) {
   return (
     <article className="group relative flex h-full flex-col rounded-2xl border border-border bg-surface p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40">
-      {image && (
-        <div className="relative -mx-6 -mt-6 mb-5 aspect-[16/10] overflow-hidden rounded-t-2xl border-b border-border">
-          <Image
-            src={image}
-            alt={`Screenshot of ${name}`}
-            fill
-            sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-            className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
-          />
-        </div>
-      )}
       <div className="flex items-start justify-between gap-4">
         <h3 className="font-display text-xl font-medium tracking-tight">{name}</h3>
         <span className="shrink-0 font-display text-xs text-muted">{year}</span>
@@ -159,6 +149,15 @@ export function ProjectCard({
       <div className="mt-5 flex flex-wrap items-center gap-1.5 border-t border-border pt-4">
         {stack.map((s) => <Tag key={s}>{s}</Tag>)}
       </div>
+
+      {images && images.length > 0 && (
+        <div className="mt-4 border-t border-border pt-4">
+          <p className="mb-2 font-display text-[11px] uppercase tracking-wide text-muted">
+            Screenshots
+          </p>
+          <ProjectGallery images={images} name={name} />
+        </div>
+      )}
 
       {href && (
         <a
